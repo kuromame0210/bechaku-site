@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "注意事項 | 別役ロボット工業（仮）",
+  title: "注意事項 | 別役ロボット工業",
   description:
     "本サービスをご検討・ご依頼いただく前に、あらかじめご確認いただきたい注意事項をまとめています。",
 }
@@ -63,34 +64,35 @@ export default function NoticePage() {
 
       {/* Page header */}
       <section className="bg-card py-14 md:py-20">
-        <div className="mx-auto max-w-2xl px-6">
-          <SectionHeading tag="h1" sub="注意事項">
-            {"Notice"}
-          </SectionHeading>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            {"本サービスをご検討・ご依頼いただく前に、あらかじめご確認ください。"}
-          </p>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading tag="h1" sub="注意事項">
+              {"Notice"}
+            </SectionHeading>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              {"本サービスをご検討・ご依頼いただく前に、あらかじめご確認ください。"}
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* Notice items */}
       <section className="border-t border-border py-12 md:py-16">
-        <div className="mx-auto max-w-2xl px-6">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="flex flex-col gap-6">
             {notices.map((item) => (
-              <div
-                key={item.number}
-                className="rounded-lg border border-border bg-card p-6"
-              >
-                <div className="mb-3 flex items-center gap-3">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
-                    {item.number}
-                  </span>
+              <Reveal key={item.number}>
+                <div className="rounded-lg border border-border bg-card p-6">
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                      {item.number}
+                    </span>
+                  </div>
+                  <p className="whitespace-pre-line leading-loose text-foreground">
+                    {item.text}
+                  </p>
                 </div>
-                <p className="whitespace-pre-line text-sm leading-loose text-foreground">
-                  {item.text}
-                </p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

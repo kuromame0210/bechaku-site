@@ -63,7 +63,13 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['var(--font-noto-sans-jp)', 'sans-serif'],
+        sans: [
+          'var(--font-noto-serif-jp)',
+          'YuMincho',
+          'Yu Mincho',
+          'Hiragino Mincho ProN',
+          'serif',
+        ],
       },
       borderRadius: {
         lg: 'var(--radius)',

@@ -4,9 +4,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業（仮）",
+  title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業",
   description:
     "3Dデータをもとに試作品を造形。組付け・干渉確認、形状検討など、設計検討を実物で進められます。",
 }
@@ -46,40 +47,43 @@ export default function PrintPage() {
 
       {/* Page header */}
       <section className="bg-card py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading tag="h1">
-            {"3Dデータから造形・試作（3Dプリント）"}
-          </SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading tag="h1">
+              {"3Dデータから造形・試作（3Dプリント）"}
+            </SectionHeading>
+          </Reveal>
         </div>
       </section>
 
       {/* Capabilities */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading sub="3Dプリントで対応できる基本的な内容です。">
-            {"できること"}
-          </SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading sub="3Dプリントで対応できる基本的な内容です。">
+              {"できること"}
+            </SectionHeading>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {capabilities.map((item) => (
-              <Card
-                key={item.text}
-                className="overflow-hidden border-border"
-              >
-                <div className="relative aspect-[16/9] w-full">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.text}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-sm font-medium leading-relaxed text-foreground">
-                    {item.text}
-                  </p>
-                </CardContent>
-              </Card>
+              <Reveal key={item.text}>
+                <Card className="overflow-hidden border-border">
+                  <div className="relative aspect-[16/9] w-full">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.text}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <p className="font-medium leading-relaxed text-foreground">
+                      {item.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -87,57 +91,69 @@ export default function PrintPage() {
 
       {/* Use cases */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>
-            {"こんな状況の方に向いています"}
-          </SectionHeading>
-          <ul className="mt-6 flex flex-col gap-3">
-            {useCases.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-              >
-                <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>
+              {"こんな状況の方に向いています"}
+            </SectionHeading>
+          </Reveal>
+          <Reveal>
+            <ul className="mt-6 flex flex-col gap-3">
+              {useCases.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                >
+                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
       {/* Benefits of prototyping */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"試作で得られること"}</SectionHeading>
-          <ul className="mt-6 flex flex-col gap-3">
-            {benefits.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-              >
-                <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"試作で得られること"}</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <ul className="mt-6 flex flex-col gap-3">
+              {benefits.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                >
+                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
       {/* Next steps */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"次のステップ"}</SectionHeading>
-          <div className="mt-6 flex flex-col gap-3">
-            <p className="text-sm leading-loose text-muted-foreground">
-              {"スキャン → 試作 → 検討 → 必要に応じて再設計・再試作。"}
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"次のステップ"}</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <div className="mt-6 flex flex-col gap-3">
+              <p className="leading-loose text-muted-foreground">
+                {"スキャン → 試作 → 検討 → 必要に応じて再設計・再試作。"}
+              </p>
+              <p className="leading-loose text-muted-foreground">
+                {"目的に合わせて段階的に進められます。一度の試作で完成を求める必要はありません。"}
+              </p>
+            </div>
+            <p className="mt-6 text-foreground">
+              {"※量産対応・事例紹介は後日追加予定です"}
             </p>
-            <p className="text-sm leading-loose text-muted-foreground">
-              {"目的に合わせて段階的に進められます。一度の試作で完成を求める必要はありません。"}
-            </p>
-          </div>
-          <p className="mt-6 text-xs text-muted-foreground/60">
-            {"※量産対応・事例紹介は後日追加予定です"}
-          </p>
+          </Reveal>
         </div>
       </section>
 

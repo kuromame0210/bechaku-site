@@ -2,9 +2,10 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { NoticeBanner } from "@/components/notice-banner"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "取引の流れ | 別役ロボット工業（仮）",
+  title: "取引の流れ | 別役ロボット工業",
   description:
     "3Dスキャン・3Dプリントのお取引の流れ。お問い合わせから納品までのステップをご案内します。",
 }
@@ -52,66 +53,72 @@ export default function FlowPage() {
 
       {/* Page heading */}
       <section className="bg-card py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <p className="text-sm font-semibold uppercase tracking-widest text-primary">
-            {"Flow"}
-          </p>
-          <h1 className="mt-2 text-2xl font-bold leading-relaxed text-foreground md:text-3xl">
-            {"お取引の流れ"}
-          </h1>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <p className="font-semibold uppercase tracking-widest text-primary">
+              {"Flow"}
+            </p>
+            <h1 className="mt-2 font-bold leading-relaxed text-foreground">
+              {"お取引の流れ"}
+            </h1>
+          </Reveal>
         </div>
       </section>
 
       {/* Steps */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="flex flex-col">
-            {steps.map((step, index) => (
-              <div key={step.number} className="flex gap-6 md:gap-10">
-                {/* Left: number + connector line */}
-                <div className="flex flex-col items-center">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground md:h-14 md:w-14 md:text-xl">
-                    {step.number}
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="flex flex-col">
+              {steps.map((step, index) => (
+                <div key={step.number} className="flex gap-6 md:gap-10">
+                  {/* Left: number + connector line */}
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary text-lg font-bold text-primary-foreground md:h-14 md:w-14 md:text-xl">
+                      {step.number}
+                    </div>
+                    {index < steps.length - 1 && (
+                      <div className="w-px flex-1 bg-border" />
+                    )}
                   </div>
-                  {index < steps.length - 1 && (
-                    <div className="w-px flex-1 bg-border" />
-                  )}
-                </div>
 
-                {/* Right: content */}
-                <div className={`pb-12 pt-2 ${index === steps.length - 1 ? "pb-0" : ""} md:pb-14`}>
-                  <h2 className="text-lg font-semibold text-foreground md:text-xl">
-                    {step.title}
-                  </h2>
-                  <p className="mt-2 whitespace-pre-line text-sm leading-loose text-muted-foreground md:text-base">
-                    {step.description}
-                  </p>
+                  {/* Right: content */}
+                  <div className={`pb-12 pt-2 ${index === steps.length - 1 ? "pb-0" : ""} md:pb-14`}>
+                    <h2 className="font-semibold text-foreground">
+                      {step.title}
+                    </h2>
+                    <p className="mt-2 whitespace-pre-line leading-loose text-muted-foreground">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Bottom CTA */}
       <section className="border-t border-border bg-secondary py-16 md:py-20">
-        <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 text-center">
-          <h2 className="text-xl font-semibold text-foreground md:text-2xl">
-            {"お困りの方は是非ご相談ください"}
-          </h2>
-          <dl className="flex flex-col gap-2 text-sm text-muted-foreground">
-            <div className="flex gap-2">
-              <dt className="font-medium text-foreground">{"電話番号:"}</dt>
-              <dd>{"000-0000-0000（仮）"}</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt className="font-medium text-foreground">{"mail:"}</dt>
-              <dd>{"info@example.com（仮）"}</dd>
-            </div>
-          </dl>
-          <Button asChild size="lg">
-            <Link href="/#contact">{"お問い合せフォーム"}</Link>
-          </Button>
+        <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 text-center">
+          <Reveal>
+            <h2 className="font-semibold text-foreground">
+              {"お困りの方は是非ご相談ください"}
+            </h2>
+            <dl className="flex flex-col gap-2 text-sm text-muted-foreground">
+              <div className="flex gap-2">
+                <dt className="font-medium text-foreground">{"電話番号:"}</dt>
+                <dd>{"000-0000-0000（仮）"}</dd>
+              </div>
+              <div className="flex gap-2">
+                <dt className="font-medium text-foreground">{"mail:"}</dt>
+                <dd>{"info@example.com（仮）"}</dd>
+              </div>
+            </dl>
+            <Button asChild size="lg">
+              <Link href="/contact">{"お問い合せフォーム"}</Link>
+            </Button>
+          </Reveal>
         </div>
       </section>
     </main>

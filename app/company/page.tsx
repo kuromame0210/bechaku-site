@@ -2,10 +2,11 @@ import type { Metadata } from "next"
 import { Card, CardContent } from "@/components/ui/card"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
+import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 
 export const metadata: Metadata = {
-  title: "会社概要 | 別役ロボット工業（仮）",
+  title: "会社概要 | 別役ロボット工業",
   description:
     "別役ロボット工業の会社概要。精密機械分野での実績と、組立・加工・電気配線の一貫対応力をご紹介します。",
 }
@@ -55,7 +56,7 @@ const strengths = [
 ]
 
 const companyInfo = [
-  { label: "会社名", value: "別役ロボット工業（仮）" },
+  { label: "会社名", value: "別役ロボット工業" },
   {
     label: "所在地",
     value: "事務所：（後日記載）\n工場：（後日記載）",
@@ -77,62 +78,74 @@ export default function CompanyPage() {
 
       {/* h1 */}
       <section className="bg-card py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading tag="h1">{"会社概要"}</SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading tag="h1">{"会社概要"}</SectionHeading>
+          </Reveal>
         </div>
       </section>
 
       {/* セクション1：弊社について */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"弊社について"}</SectionHeading>
-          <div className="mt-6 flex flex-col gap-4">
-            {aboutText.map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-sm leading-loose text-muted-foreground md:text-base"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </div>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"弊社について"}</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <div className="mt-6 flex flex-col gap-4">
+              {aboutText.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-base leading-loose text-muted-foreground"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* セクション2：幅広い対応力で... */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>
-            {"幅広い対応力で貴社の課題解決に貢献します"}
-          </SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>
+              {"幅広い対応力で貴社の課題解決に貢献します"}
+            </SectionHeading>
+          </Reveal>
         </div>
       </section>
 
       {/* セクション3：弊社の強み */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"弊社の強み"}</SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"弊社の強み"}</SectionHeading>
+          </Reveal>
           <div className="mt-8 flex flex-col gap-4">
             {strengths.map((block) => (
-              <Card key={block.title} className="border-border">
-                <CardContent className="flex flex-col gap-4 p-6">
-                  <h3 className="text-base font-semibold text-foreground">
-                    {block.title}
-                  </h3>
-                  {block.items.map((item, i) => (
-                    <div key={i} className="flex flex-col gap-1">
-                      {item.label && (
-                        <span className="text-xs font-medium text-primary">
-                          {item.label}
-                        </span>
-                      )}
-                      <p className="text-sm leading-relaxed text-muted-foreground">
-                        {item.text}
-                      </p>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
+              <Reveal key={block.title}>
+                <Card className="border-border">
+                  <CardContent className="flex flex-col gap-4 p-6">
+                    <h3 className="font-semibold text-foreground">
+                      {block.title}
+                    </h3>
+                    {block.items.map((item, i) => (
+                      <div key={i} className="flex flex-col gap-1">
+                        {item.label && (
+                          <span className="text-xs font-medium text-primary">
+                            {item.label}
+                          </span>
+                        )}
+                        <p className="leading-relaxed text-muted-foreground">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -140,27 +153,31 @@ export default function CompanyPage() {
 
       {/* セクション4：会社情報 */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"会社情報"}</SectionHeading>
-          <Card className="mt-8 border-border">
-            <CardContent className="p-0">
-              <dl className="divide-y divide-border">
-                {companyInfo.map((row) => (
-                  <div
-                    key={row.label}
-                    className="flex flex-col gap-1 px-6 py-4 sm:flex-row sm:gap-8"
-                  >
-                    <dt className="w-28 shrink-0 text-sm font-medium text-foreground">
-                      {row.label}
-                    </dt>
-                    <dd className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
-                      {row.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </CardContent>
-          </Card>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"会社情報"}</SectionHeading>
+          </Reveal>
+          <Reveal>
+            <Card className="mt-8 border-border">
+              <CardContent className="p-0">
+                <dl className="divide-y divide-border">
+                  {companyInfo.map((row) => (
+                    <div
+                      key={row.label}
+                      className="flex flex-col gap-1 px-6 py-4 sm:flex-row sm:gap-8"
+                    >
+                      <dt className="w-28 shrink-0 text-sm font-medium text-foreground">
+                        {row.label}
+                      </dt>
+                      <dd className="whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
+                        {row.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </CardContent>
+            </Card>
+          </Reveal>
         </div>
       </section>
 

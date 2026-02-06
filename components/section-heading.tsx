@@ -15,16 +15,16 @@ export function SectionHeading({
       <Tag
         className={
           Tag === "h1"
-            ? "text-2xl font-bold leading-relaxed text-foreground md:text-3xl"
+            ? "font-bold leading-relaxed text-foreground"
             : Tag === "h2"
-              ? "text-xl font-semibold leading-relaxed text-foreground md:text-2xl"
-              : "text-lg font-semibold leading-relaxed text-foreground"
+              ? "font-semibold leading-relaxed text-foreground"
+              : "font-semibold leading-relaxed text-foreground"
         }
       >
         {children}
       </Tag>
       {sub && (
-        <p className="text-sm leading-relaxed text-muted-foreground">{sub}</p>
+        <p className="leading-relaxed text-muted-foreground">{sub}</p>
       )}
     </div>
   )

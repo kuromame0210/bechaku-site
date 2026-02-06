@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { Reveal } from "@/components/reveal"
 
 interface CTASectionProps {
   heading?: string
@@ -12,19 +13,21 @@ export function CTASection({
 }: CTASectionProps) {
   return (
     <section id="contact" className="border-t border-border bg-card py-16 md:py-20">
-      <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 px-6 text-center">
-        <h2 className="text-xl font-semibold text-foreground md:text-2xl">
-          {heading}
-        </h2>
-        <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
-          {description}
-        </p>
-        <Button asChild size="lg">
-          <Link href="/#contact">{"お問い合わせはこちら"}</Link>
-        </Button>
-        <p className="text-xs text-muted-foreground">
-          {"※お問い合わせフォームは後日設置予定です"}
-        </p>
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 text-center">
+        <Reveal className="flex flex-col items-center gap-3 md:gap-4">
+          <h2 className="font-semibold text-foreground">
+            {heading}
+          </h2>
+          <p className="max-w-lg leading-relaxed text-muted-foreground">
+            {description}
+          </p>
+          <Button asChild size="lg">
+            <Link href="/contact">{"お問い合わせはこちら"}</Link>
+          </Button>
+          <p className="text-sm text-muted-foreground">
+            {"※注意事項をご確認の上、フォームへお進みください。"}
+          </p>
+        </Reveal>
       </div>
     </section>
   )

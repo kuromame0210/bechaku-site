@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { NoticeBanner } from "@/components/notice-banner"
+import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 import {
   Accordion,
@@ -9,7 +10,7 @@ import {
 } from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "よくあるご質問（FAQ） | 別役ロボット工業（仮）",
+  title: "よくあるご質問（FAQ） | 別役ロボット工業",
   description:
     "3Dスキャン・3Dプリントに関するよくあるご質問をまとめています。",
 }
@@ -81,45 +82,49 @@ export default function FaqPage() {
 
       {/* Page heading */}
       <section className="bg-card py-16 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <h1 className="text-2xl font-bold text-foreground md:text-3xl">
-            {"よくあるご質問（FAQ）"}
-          </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
-            {"ご相談時によくいただく質問をまとめています。"}
-            <br />
-            {"内容によっては個別判断となるため、詳細はお問い合わせください。"}
-          </p>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <h1 className="font-bold text-foreground">
+              {"よくあるご質問（FAQ）"}
+            </h1>
+            <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+              {"ご相談時によくいただく質問をまとめています。"}
+              <br />
+              {"内容によっては個別判断となるため、詳細はお問い合わせください。"}
+            </p>
+          </Reveal>
         </div>
       </section>
 
       {/* FAQ Accordion */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <Accordion type="multiple" className="w-full">
-            {faqItems.map((item) => (
-              <AccordionItem
-                key={item.id}
-                value={item.id}
-                className="border-border"
-              >
-                <AccordionTrigger className="gap-4 py-5 text-left text-sm font-semibold text-foreground hover:no-underline hover:text-primary md:text-base">
-                  <span>
-                    {"Q. "}
-                    {item.question}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="pb-6 pt-0 text-sm leading-loose text-muted-foreground md:text-base">
-                  {item.answer.split("\n").map((line, i) => (
-                    <span key={`${item.id}-line-${i}`}>
-                      {line}
-                      {i < item.answer.split("\n").length - 1 && <br />}
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <Accordion type="multiple" className="w-full">
+              {faqItems.map((item) => (
+                <AccordionItem
+                  key={item.id}
+                  value={item.id}
+                  className="border-border"
+                >
+                  <AccordionTrigger className="gap-4 py-5 text-left text-base font-semibold text-foreground hover:no-underline hover:text-primary">
+                    <span>
+                      {"Q. "}
+                      {item.question}
                     </span>
-                  ))}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6 pt-0 text-base leading-loose text-muted-foreground">
+                    {item.answer.split("\n").map((line, i) => (
+                      <span key={`${item.id}-line-${i}`}>
+                        {line}
+                        {i < item.answer.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
         </div>
       </section>
 

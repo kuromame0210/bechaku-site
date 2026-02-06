@@ -4,9 +4,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
+import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業（仮）",
+  title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業",
   description:
     "現物を精密にスキャンし、形状・構造を3Dデータとして取得。図面がない状態からの技術検討が可能です。",
 }
@@ -55,40 +56,43 @@ export default function ScanPage() {
 
       {/* Page header */}
       <section className="bg-card py-14 md:py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading tag="h1">
-            {"実物から3Dデータ化（3Dスキャン）"}
-          </SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading tag="h1">
+              {"実物から3Dデータ化（3Dスキャン）"}
+            </SectionHeading>
+          </Reveal>
         </div>
       </section>
 
       {/* Capabilities */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading sub="3Dスキャンで対応できる基本的な内容です。">
-            {"できること"}
-          </SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading sub="3Dスキャンで対応できる基本的な内容です。">
+              {"できること"}
+            </SectionHeading>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {capabilities.map((item) => (
-              <Card
-                key={item.text}
-                className="overflow-hidden border-border"
-              >
-                <div className="relative aspect-[16/9] w-full">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.text}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-sm font-medium leading-relaxed text-foreground">
-                    {item.text}
-                  </p>
-                </CardContent>
-              </Card>
+              <Reveal key={item.text}>
+                <Card className="overflow-hidden border-border">
+                  <div className="relative aspect-[16/9] w-full">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.text}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <p className="font-medium leading-relaxed text-foreground">
+                      {item.text}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -96,74 +100,85 @@ export default function ScanPage() {
 
       {/* Use cases */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>
-            {"こんな状況の方に向いています"}
-          </SectionHeading>
-          <ul className="mt-6 flex flex-col gap-3">
-            {useCases.map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-              >
-                <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>
+              {"こんな状況の方に向いています"}
+            </SectionHeading>
+          </Reveal>
+          <Reveal>
+            <ul className="mt-6 flex flex-col gap-3">
+              {useCases.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                >
+                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
       </section>
 
       {/* Reverse engineering explanation */}
       <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>
-            {"リバースエンジニアリングとは（補足）"}
-          </SectionHeading>
-          <div className="mt-6 flex flex-col gap-3">
-            <p className="text-sm leading-loose text-muted-foreground">
-              {"既存製品や部品を解析し、構造や仕様を明らかにする技術的アプローチです。"}
-            </p>
-            <p className="text-sm leading-loose text-muted-foreground">
-              {"実物 → 3Dスキャン → データ解析という流れで、設計・検討に使える情報を整理します。"}
-            </p>
-          </div>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>
+              {"リバースエンジニアリングとは（補足）"}
+            </SectionHeading>
+          </Reveal>
+          <Reveal>
+            <div className="mt-6 flex flex-col gap-3">
+              <p className="leading-loose text-muted-foreground">
+                {"既存製品や部品を解析し、構造や仕様を明らかにする技術的アプローチです。"}
+              </p>
+              <p className="leading-loose text-muted-foreground">
+                {"実物 → 3Dスキャン → データ解析という流れで、設計・検討に使える情報を整理します。"}
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Cautions */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-5xl px-6">
-          <SectionHeading>{"注意点（仮）"}</SectionHeading>
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"注意点（仮）"}</SectionHeading>
+          </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {cautions.map((item) => (
-              <Card
-                key={item.title}
-                className="overflow-hidden border-border"
-              >
-                <div className="relative aspect-[16/9] w-full">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
-                <CardContent className="flex flex-col gap-2 p-6">
-                  <h3 className="text-sm font-semibold text-foreground">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <Reveal key={item.title}>
+                <Card className="overflow-hidden border-border">
+                  <div className="relative aspect-[16/9] w-full">
+                    <Image
+                      src={item.image || "/placeholder.svg"}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                  <CardContent className="flex flex-col gap-2 p-6">
+                    <h3 className="font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
           </div>
-          <p className="mt-6 text-xs text-muted-foreground/60">
-            {"※詳細は後日整理予定です"}
-          </p>
+          <Reveal>
+            <p className="mt-6 text-foreground">
+              {"※詳細は後日整理予定です"}
+            </p>
+          </Reveal>
         </div>
       </section>
 

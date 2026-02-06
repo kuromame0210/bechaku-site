@@ -12,7 +12,7 @@ const navItems = [
   { label: "このサイトの使い方", href: "/usage" },
   { label: "よくあるご質問", href: "/faq" },
   { label: "注意事項", href: "/notice" },
-  { label: "お問い合わせ", href: "/#contact" },
+  { label: "お問い合わせ", href: "/contact" },
 ]
 
 export function Header() {
@@ -20,9 +20,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-bold text-primary">
-          {"別役ロボット工業（仮）"}
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <Link href="/" className="text-xl font-bold text-primary">
+          {"別役ロボット工業"}
         </Link>
 
         {/* Desktop nav */}
@@ -31,7 +31,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="whitespace-nowrap text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              className="whitespace-nowrap text-base font-medium text-foreground transition-colors hover:text-primary"
             >
               {item.label}
             </Link>
@@ -50,14 +50,18 @@ export function Header() {
       </div>
 
       {/* Mobile nav */}
-      {isOpen && (
-        <nav className="border-t border-border bg-card px-6 pb-4 pt-2 lg:hidden">
+      <div
+        className="menu-reveal lg:hidden"
+        data-state={isOpen ? "open" : "closed"}
+        aria-hidden={!isOpen}
+      >
+        <nav className="border-t border-border bg-card px-6 pb-4 pt-2">
           <ul className="flex flex-col gap-3">
             {navItems.map((item) => (
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="block py-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                  className="block py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
@@ -66,7 +70,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
-      )}
+      </div>
     </header>
   )
 }
