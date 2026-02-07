@@ -14,15 +14,15 @@ export const metadata: Metadata = {
 
 const capabilities = [
   {
-    image: "/images/icon-print.jpg",
+    image: "/images/icon-print.webp",
     text: "試作品の造形",
   },
   {
-    image: "/images/icon-assembly.jpg",
+    image: "/images/icon-assembly.webp",
     text: "組付け・干渉確認モデル",
   },
   {
-    image: "/images/icon-small-batch.jpg",
+    image: "/images/icon-small-batch.webp",
     text: "小ロットでの形状確認",
   },
 ]
@@ -46,12 +46,30 @@ export default function PrintPage() {
       <NoticeBanner />
 
       {/* Page header */}
-      <section className="bg-card py-14 md:py-20">
+      <section className="relative overflow-hidden py-14 md:py-20">
+        <Image
+          src="/images/re_bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading tag="h1">
-              {"3Dデータから造形・試作（3Dプリント）"}
-            </SectionHeading>
+            <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <SectionHeading tag="h1">
+                {"3Dデータから造形・試作（3Dプリント）"}
+              </SectionHeading>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted shadow-sm">
+                <Image
+                  src="/images/aglista-3d-printer.png"
+                  alt="3Dプリンタの設備イメージ"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -73,7 +91,7 @@ export default function PrintPage() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.text}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 640px) 100vw, 33vw"
                     />
                   </div>

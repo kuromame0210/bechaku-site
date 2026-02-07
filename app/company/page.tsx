@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
@@ -92,15 +93,26 @@ export default function CompanyPage() {
             <SectionHeading>{"弊社について"}</SectionHeading>
           </Reveal>
           <Reveal>
-            <div className="mt-6 flex flex-col gap-4">
-              {aboutText.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-base leading-loose text-muted-foreground"
-                >
-                  {paragraph}
-                </p>
-              ))}
+            <div className="mt-6 grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <div className="flex flex-col gap-4">
+                {aboutText.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className="text-base leading-loose text-muted-foreground"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted shadow-sm">
+                <Image
+                  src="/images/工場の機械ロボットアーム.png"
+                  alt="工場内のロボットアーム作業イメージ"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
+              </div>
             </div>
           </Reveal>
         </div>

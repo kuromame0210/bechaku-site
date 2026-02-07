@@ -9,7 +9,7 @@ import { Reveal } from "@/components/reveal"
 
 const capabilities = [
   {
-    image: "/images/icon-scan.jpg",
+    image: "/images/vl-700-scanner.png",
     title: "実物 → 3Dデータ化",
     description:
       "現物をスキャンし、形状・構造を3Dデータとして取得します。図面がない状態からの検討が可能です。",
@@ -17,7 +17,7 @@ const capabilities = [
     linkLabel: "3Dスキャン詳細",
   },
   {
-    image: "/images/icon-print.jpg",
+    image: "/images/aglista-3d-printer.png",
     title: "3Dデータ → 造形",
     description:
       "3Dデータをもとに試作品を造形。組付けや干渉確認、形状検討に活用できます。",
@@ -25,7 +25,7 @@ const capabilities = [
     linkLabel: "3Dプリント詳細",
   },
   {
-    image: "/images/icon-restore.jpg",
+    image: "/images/icon-restore.webp",
     title: "旧パーツ・部品の復元",
     description:
       "生産中止部品や入手困難なパーツを、スキャン・データ化を経て復元します。",
@@ -33,7 +33,7 @@ const capabilities = [
     linkLabel: null,
   },
   {
-    image: "/images/icon-prototype.jpg",
+    image: "/images/icon-prototype.webp",
     title: "試作・量産（カスタム）",
     description:
       "試作から小ロット量産、カスタム対応まで。目的に応じた造形方法をご提案します。",
@@ -54,15 +54,24 @@ export default function HomePage() {
       <NoticeBanner />
 
       {/* Hero */}
-      <section className="bg-card py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-6">
+      <section className="relative overflow-hidden py-16 md:py-24">
+        <Image
+          src="/images/メインページトップ.jpg"
+          alt="3Dスキャン・3Dプリントの設備イメージ"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
           <Reveal>
-            <h1 className="text-balance font-bold leading-relaxed text-foreground">
+            <h1 className="text-balance font-bold leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
               {"実物から、解析・データ化・復元・試作まで。"}
               <br />
               {"3Dスキャン・3Dプリントによるリバースエンジニアリング"}
             </h1>
-            <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-2xl leading-relaxed text-white/85 drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               {"図面がなくても、現物があれば技術的に成立するかを判断し、形にします。"}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -106,7 +115,7 @@ export default function HomePage() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
                   </div>

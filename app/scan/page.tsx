@@ -14,15 +14,15 @@ export const metadata: Metadata = {
 
 const capabilities = [
   {
-    image: "/images/icon-precision-scan.jpg",
+    image: "/images/icon-scan.webp",
     text: "実物を精密にスキャン",
   },
   {
-    image: "/images/icon-3d-data.jpg",
+    image: "/images/icon-3d-data.webp",
     text: "形状・構造を3Dデータとして取得",
   },
   {
-    image: "/images/icon-no-drawing.jpg",
+    image: "/images/icon-no-drawing.webp",
     text: "図面がない状態から検討可能",
   },
 ]
@@ -36,13 +36,13 @@ const useCases = [
 
 const cautions = [
   {
-    image: "/images/icon-caution-surface.jpg",
+    image: "/images/icon-caution-surface.webp",
     title: "透明・鏡面・囲い形状",
     description:
       "透明素材や鏡面仕上げ、完全に囲われた内部構造はスキャンが難しい場合があります。",
   },
   {
-    image: "/images/icon-caution-correction.jpg",
+    image: "/images/icon-caution-correction.webp",
     title: "補正・推定が入る場合",
     description:
       "形状によっては、スキャンデータに対して補正や推定処理が必要になる場合があります。",
@@ -55,12 +55,30 @@ export default function ScanPage() {
       <NoticeBanner />
 
       {/* Page header */}
-      <section className="bg-card py-14 md:py-20">
+      <section className="relative overflow-hidden py-14 md:py-20">
+        <Image
+          src="/images/re_bg.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading tag="h1">
-              {"実物から3Dデータ化（3Dスキャン）"}
-            </SectionHeading>
+            <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <SectionHeading tag="h1">
+                {"実物から3Dデータ化（3Dスキャン）"}
+              </SectionHeading>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/images/vl-700-scanner.png"
+                  alt="3Dスキャナの設備イメージ"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -82,7 +100,7 @@ export default function ScanPage() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.text}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 640px) 100vw, 33vw"
                     />
                   </div>
@@ -158,7 +176,7 @@ export default function ScanPage() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
-                      className="object-cover"
+                      className="object-contain"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
                   </div>

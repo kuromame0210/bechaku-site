@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { NoticeBanner } from "@/components/notice-banner"
@@ -55,12 +56,25 @@ export default function FlowPage() {
       <section className="bg-card py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <p className="font-semibold uppercase tracking-widest text-primary">
-              {"Flow"}
-            </p>
-            <h1 className="mt-2 font-bold leading-relaxed text-foreground">
-              {"お取引の流れ"}
-            </h1>
+            <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
+              <div>
+                <p className="font-semibold uppercase tracking-widest text-primary">
+                  {"Flow"}
+                </p>
+                <h1 className="mt-2 font-bold leading-relaxed text-foreground">
+                  {"お取引の流れ"}
+                </h1>
+              </div>
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-muted shadow-sm">
+                <Image
+                  src="/images/icon-3d-data.webp"
+                  alt="3Dデータ化の作業イメージ"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 45vw"
+                />
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
