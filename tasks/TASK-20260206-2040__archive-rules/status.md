@@ -1,7 +1,8 @@
 # Status
 
 - Task: TASK-20260206-2040__archive-rules
-- Phase: 1 (design)
-- Gate: 1 (approval pending)
-- Approval: Gate 0 approved (OK)
-- Updated: 2026-02-06 20:41
+- Phase: 2 (Implementation)
+- Gate: None
+- Approval: Gate 0/1 Approved
+- Updated: 2026-02-07 17:08
+- Next: Implement ARCHIVE_RULES.md + AGENTS.md note (if desired).

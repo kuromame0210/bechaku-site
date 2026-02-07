@@ -6,12 +6,10 @@ import { Menu, X } from "lucide-react"
 
 const navItems = [
   { label: "トップ", href: "/" },
+  { label: "アニメトップ", href: "/test-top-animation" },
   { label: "3Dスキャン", href: "/scan" },
   { label: "3Dプリント", href: "/print" },
-  { label: "取引の流れ", href: "/flow" },
-  { label: "このサイトの使い方", href: "/usage" },
-  { label: "よくあるご質問", href: "/faq" },
-  { label: "注意事項", href: "/notice" },
+  { label: "会社案内", href: "/company" },
   { label: "お問い合わせ", href: "/contact" },
 ]
 

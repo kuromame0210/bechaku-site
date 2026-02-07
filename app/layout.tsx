@@ -16,6 +16,21 @@ export const metadata: Metadata = {
   title: "別役ロボット工業 | 3Dスキャン・3Dプリント",
   description:
     "実物から、解析・データ化・復元・試作まで。3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がなくても、現物があれば技術的に成立するかを判断し、形にします。",
+  icons: {
+    icon: [
+      {
+        url: "/favicon-16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
+      {
+        url: "/favicon-32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/favicon-32.png",
+  },
 }
 
 export const viewport: Viewport = {

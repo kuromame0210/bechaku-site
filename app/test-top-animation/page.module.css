@@ -1,0 +1,52 @@
+.heroBg {
+  opacity: 0;
+  transition: opacity 900ms ease-out;
+}
+
+.heroBgIn {
+  opacity: 1;
+}
+
+.heroReveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.heroRevealIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.h2Reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 520ms ease-out;
+}
+
+.h2RevealIn {
+  clip-path: inset(0 0 0 0);
+}
+
+.lineFlow {
+  stroke-dasharray: 6 10;
+  animation: lineFlow 18s linear infinite;
+}
+
+@keyframes lineFlow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :global(html:not([data-motion="force"])) .heroReveal,
+  :global(html:not([data-motion="force"])) .heroBg,
+  :global(html:not([data-motion="force"])) .h2Reveal,
+  :global(html:not([data-motion="force"])) .lineFlow {
+    animation: none !important;
+    transition: none !important;
+  }
+}

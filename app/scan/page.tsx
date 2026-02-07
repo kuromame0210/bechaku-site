@@ -3,6 +3,8 @@ import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 
@@ -49,6 +51,53 @@ const cautions = [
   },
 ]
 
+const flowSteps = [
+  {
+    number: 1,
+    title: "お問合せ",
+    description: "電話、FAX、お問い合わせフォームよりご相談ください",
+  },
+  {
+    number: 2,
+    title: "現物確認",
+    description: "スキャン対象を確認し、対応可否を判断します",
+  },
+  {
+    number: 3,
+    title: "お見積り",
+    description: "費用と納期のご案内をします",
+  },
+  {
+    number: 4,
+    title: "3Dデータ化",
+    description: "3Dスキャナでデータ化（※データ提供も可能）",
+  },
+  {
+    number: 5,
+    title: "図面化（必要に応じて）",
+    description: "ご希望があれば2D図面化します",
+  },
+  {
+    number: 6,
+    title: "納品",
+    description: "データ／造形物を納品します",
+  },
+]
+
+const faqHighlights = [
+  "図面やCADデータがなくても相談できますか？",
+  "古くて破損している部品でも復元できますか？",
+  "どのくらいの大きさまで対応できますか？",
+  "納期はどのくらいかかりますか？",
+  "費用はどのくらいかかりますか？",
+]
+
+const noticeSummary = [
+  "透明・鏡面・囲い形状はスキャンが難しい場合があります。",
+  "機械精度や環境による誤差が生じる可能性があります。",
+  "素材の収縮などにより実寸値からの差が出ることがあります。",
+]
+
 export default function ScanPage() {
   return (
     <main>
@@ -57,7 +106,7 @@ export default function ScanPage() {
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <Image
-          src="/images/re_bg.jpg"
+          src="/images/section-bg.jpg"
           alt=""
           fill
           className="object-cover"
@@ -66,12 +115,25 @@ export default function ScanPage() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
-              <SectionHeading tag="h1">
-                {"実物から3Dデータ化（3Dスキャン）"}
-              </SectionHeading>
+              <div className="flex flex-col gap-6">
+                <SectionHeading tag="h1">
+                  {"実物から3Dデータ化 \n（3Dスキャン）"}
+                </SectionHeading>
+                <p className="max-w-2xl leading-relaxed text-foreground">
+                  {"現物があれば、図面がなくても3Dデータ化が可能です。"}
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link href="/contact">{"お問い合わせ"}</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="#flow">{"取引の流れを見る"}</Link>
+                  </Button>
+                </div>
+              </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                 <Image
-                  src="/images/vl-700-scanner.png"
+                  src="/images/3d-scanner-vl-700.webp"
                   alt="3Dスキャナの設備イメージ"
                   fill
                   className="object-contain"
@@ -131,7 +193,7 @@ export default function ScanPage() {
                   key={item}
                   className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
                 >
-                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                  <span className="list-dot" />
                   {item}
                 </li>
               ))}
@@ -161,11 +223,11 @@ export default function ScanPage() {
         </div>
       </section>
 
-      {/* Cautions */}
+      {/* Notice */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading>{"注意点（仮）"}</SectionHeading>
+            <SectionHeading>{"注意事項"}</SectionHeading>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {cautions.map((item) => (
@@ -176,7 +238,7 @@ export default function ScanPage() {
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
-                      className="object-contain"
+                      className="object-cover"
                       sizes="(max-width: 640px) 100vw, 50vw"
                     />
                   </div>
@@ -196,9 +258,107 @@ export default function ScanPage() {
             <p className="mt-6 text-foreground">
               {"※詳細は後日整理予定です"}
             </p>
+            <Link
+              href="/notice"
+              className="mt-4 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+            >
+              {"注意事項を詳しく見る"}
+            </Link>
           </Reveal>
         </div>
       </section>
+
+      {/* Flow */}
+      <section id="flow" className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"取引の流れ"}</SectionHeading>
+          </Reveal>
+          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
+                    src="/images/icon-3d-data.webp"
+                    alt="3Dスキャンによるデータ化イメージ"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal>
+              <div className="flex flex-col">
+                {flowSteps.map((step, index) => (
+                  <div key={step.number} className="flex gap-6 md:gap-10">
+                    <div className="flex flex-col items-center">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground md:h-12 md:w-12 md:text-lg">
+                        {step.number}
+                      </div>
+                      {index < flowSteps.length - 1 && (
+                        <div className="w-px flex-1 bg-border" />
+                      )}
+                    </div>
+                    <div className={`pb-10 pt-1 ${index === flowSteps.length - 1 ? "pb-0" : ""}`}>
+                      <h3 className="font-semibold text-foreground">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 leading-relaxed text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-border bg-secondary py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"よくあるご質問"}</SectionHeading>
+          </Reveal>
+          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
+            <Reveal className="md:order-2">
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
+                    src="/images/part-standalone-photo.jpg"
+                    alt="部品の写真イメージ"
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal className="md:order-1">
+              <ul className="flex flex-col gap-3">
+                {faqHighlights.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                  >
+                    <span className="list-dot" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href="/faq"
+                className="mt-6 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+              >
+                {"FAQを詳しく見る"}
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
 
       {/* CTA */}
       <CTASection

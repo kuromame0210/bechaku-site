@@ -277,9 +277,14 @@ import { cn } from "@/lib/utils"
                  {"モデリングにあたっての注意事項に合意する"}
                  <RequiredMark />
                  <span className="ml-2 text-muted-foreground">
-                   <Link href="/notice" className="text-primary hover:underline">
-                     {"注意事項を確認"}
-                   </Link>
+                  <Link
+                    href="/notice"
+                    className="text-primary hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {"注意事項を確認"}
+                  </Link>
                  </span>
                </Label>
              </div>
