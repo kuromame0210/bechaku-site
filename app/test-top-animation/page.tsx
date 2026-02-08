@@ -64,11 +64,11 @@ export default function TestTopAnimationPage() {
 
   useEffect(() => {
     document.documentElement.dataset.motion = "force"
-    const hideTimer = window.setTimeout(() => setIntroPhase("hide"), 900)
+    const hideTimer = window.setTimeout(() => setIntroPhase("hide"), 1600)
     const doneTimer = window.setTimeout(() => {
       setIntroPhase("done")
       setHeroIn(true)
-    }, 1400)
+    }, 2400)
     return () => {
       window.clearTimeout(hideTimer)
       window.clearTimeout(doneTimer)
