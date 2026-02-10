@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import type { ChangeEvent, FormEvent } from "react"
 import Link from "next/link"
@@ -13,16 +13,17 @@ import { cn } from "@/lib/utils"
  
  type Step = "input" | "confirm" | "complete"
  
- type FormData = {
-   companyName: string
-   contactName: string
-   postalCode: string
-   address: string
-   phone: string
-   email: string
-   inquiryType: string
-   message: string
- }
+type FormData = {
+  companyName: string
+  contactName: string
+  postalCode: string
+  address: string
+  phone: string
+  email: string
+  inquiryType: string
+  message: string
+}
+
  
  const inquiryOptions = [
    "リバースエンジニアリング",
@@ -42,14 +43,17 @@ import { cn } from "@/lib/utils"
    { key: "message", label: "内容" },
  ]
  
- export function ContactForm() {
-   const [step, setStep] = useState<Step>("input")
-   const [formError, setFormError] = useState("")
-   const [consent, setConsent] = useState(false)
-   const [files, setFiles] = useState<Array<File | null>>([null, null, null])
-   const [formData, setFormData] = useState<FormData>({
-     companyName: "",
-     contactName: "",
+export function ContactForm() {
+  const [step, setStep] = useState<Step>("input")
+  const [formError, setFormError] = useState("")
+  const [submitError, setSubmitError] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [addressNotice, setAddressNotice] = useState("")
+  const [consent, setConsent] = useState(false)
+  const [files, setFiles] = useState<Array<File | null>>([null, null, null])
+  const [formData, setFormData] = useState<FormData>({
+    companyName: "",
+    contactName: "",
      postalCode: "",
      address: "",
      phone: "",
@@ -58,16 +62,58 @@ import { cn } from "@/lib/utils"
      message: "",
    })
  
-   const fileLabels = useMemo(
-     () =>
-       files.map((file) => (file ? file.name : "選択されていません")),
-     [files],
-   )
- 
+  const fileLabels = useMemo(
+    () =>
+      files.map((file) => (file ? file.name : "選択されていません")),
+    [files],
+  )
+
+  const normalizePostalCode = (value: string) => value.replace(/[^\d]/g, "")
+
+  const fetchAddress = async (zipcode: string) => {
+    try {
+      const response = await fetch(
+        `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${zipcode}`,
+      )
+      if (!response.ok) {
+        throw new Error("zipcloud_error")
+      }
+      const data = (await response.json()) as {
+        results?: Array<{
+          address1: string
+          address2: string
+          address3: string
+        }>
+        message?: string | null
+      }
+      if (!data.results || data.results.length === 0) {
+        setAddressNotice("該当する住所が見つかりませんでした。")
+        return
+      }
+      const result = data.results[0]
+      setFormData((prev) => ({
+        ...prev,
+        address: `${result.address1}${result.address2}${result.address3}`,
+      }))
+      setAddressNotice("")
+    } catch {
+      setAddressNotice("住所の自動入力に失敗しました。手入力をお願いします。")
+    }
+  }
+
   const updateField =
     (field: keyof FormData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setFormData((prev) => ({ ...prev, [field]: event.target.value }))
+      const nextValue = event.target.value
+      setFormData((prev) => ({ ...prev, [field]: nextValue }))
+      if (field === "postalCode") {
+        const normalized = normalizePostalCode(nextValue)
+        if (normalized.length === 7) {
+          fetchAddress(normalized)
+        } else {
+          setAddressNotice("")
+        }
+      }
     }
  
   const handleFileChange =
@@ -92,6 +138,39 @@ import { cn } from "@/lib/utils"
      setFormError("")
      setStep("confirm")
    }
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    setSubmitError("")
+    try {
+      const payload = new FormData()
+      payload.set("companyName", formData.companyName)
+      payload.set("contactName", formData.contactName)
+      payload.set("postalCode", formData.postalCode)
+      payload.set("address", formData.address)
+      payload.set("phone", formData.phone)
+      payload.set("email", formData.email)
+      payload.set("inquiryType", formData.inquiryType)
+      payload.set("message", formData.message)
+      files.forEach((file, index) => {
+        if (file) {
+          payload.set(`file${index}`, file)
+        }
+      })
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: payload,
+      })
+      if (!response.ok) {
+        throw new Error("send_failed")
+      }
+      setStep("complete")
+    } catch {
+      setSubmitError("送信に失敗しました。時間をおいて再度お試しください。")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
  
    if (step === "complete") {
      return (
@@ -103,6 +182,9 @@ import { cn } from "@/lib/utils"
            {
              "お問い合わせ内容を受け付けました。内容を確認のうえ、担当者よりご連絡いたします。"
            }
+         </p>
+         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+           {"※数営業日以内に返信がない場合はお手数ですが再度ご連絡ください。"}
          </p>
          <div className="mt-6 flex justify-center">
           <Button asChild variant="outline">
@@ -127,25 +209,27 @@ import { cn } from "@/lib/utils"
        </div>
  
        {step === "input" ? (
-         <form onSubmit={handleConfirm} className="space-y-6">
-           {formError && (
-             <div className="rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
-               {formError}
-             </div>
-           )}
+        <form onSubmit={handleConfirm} className="space-y-6">
+          {formError && (
+            <div className="rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+              {formError}
+            </div>
+          )}
  
            <FieldGroup label="会社名" required>
              <Input
                value={formData.companyName}
                onChange={updateField("companyName")}
+               placeholder="例）別役ロボット工業株式会社"
                required
              />
            </FieldGroup>
- 
+
            <FieldGroup label="担当者名" required>
              <Input
                value={formData.contactName}
                onChange={updateField("contactName")}
+               placeholder="例）山田 太郎"
                required
              />
            </FieldGroup>
@@ -154,23 +238,26 @@ import { cn } from "@/lib/utils"
              <div className="space-y-3">
                <div className="flex items-center gap-2">
                  <span className="text-sm text-muted-foreground">〒</span>
-                 <Input
-                   className="flex-1"
-                   value={formData.postalCode}
-                   onChange={updateField("postalCode")}
-                   placeholder="000-0000"
-                   required
-                 />
-               </div>
-               <p className="text-xs text-muted-foreground">
-                 {"※郵便番号をご入力頂くと住所が自動入力されます。"}
-               </p>
-               <Input
-                 value={formData.address}
-                 onChange={updateField("address")}
-                 placeholder="東京都千代田区..."
-                 required
-               />
+                <Input
+                  className="flex-1"
+                  value={formData.postalCode}
+                  onChange={updateField("postalCode")}
+                  placeholder="例）367-0212"
+                  required
+                />
+              </div>
+              <p className="text-xs text-muted-foreground">
+                {"※郵便番号をご入力頂くと住所が自動入力されます。"}
+              </p>
+              {addressNotice && (
+                <p className="text-xs text-destructive">{addressNotice}</p>
+              )}
+              <Input
+                value={formData.address}
+                onChange={updateField("address")}
+                placeholder="例）埼玉県本庄市児玉町児玉 1732-1"
+                required
+              />
              </div>
            </FieldGroup>
  
@@ -178,6 +265,7 @@ import { cn } from "@/lib/utils"
              <Input
                value={formData.phone}
                onChange={updateField("phone")}
+               placeholder="例）0495-71-6824"
                required
              />
            </FieldGroup>
@@ -187,7 +275,7 @@ import { cn } from "@/lib/utils"
                type="email"
                value={formData.email}
                onChange={updateField("email")}
-               placeholder="info@abcd.co.jp"
+               placeholder="例）h-betchaku@brinet.co.jp"
                required
              />
            </FieldGroup>
@@ -213,17 +301,19 @@ import { cn } from "@/lib/utils"
                        className="sr-only"
                        onChange={handleFileChange(index)}
                      />
-                     <Label
-                       htmlFor={inputId}
-                       className="ml-auto cursor-pointer text-sm text-primary hover:underline"
-                     >
-                       {"ファイルを選択"}
-                     </Label>
+                      <Label
+                        htmlFor={inputId}
+                        className="ml-auto cursor-pointer text-sm text-foreground/70 hover:text-foreground/90 hover:underline"
+                      >
+                        {"ファイルを選択"}
+                      </Label>
                    </div>
                  )
                })}
              </div>
-             <p className="text-xs text-muted-foreground">{"※3MBまで可能"}</p>
+             <p className="text-xs text-muted-foreground">
+               {"※添付ファイルは3MBまで（最大3件）です。"}
+             </p>
            </div>
  
            <div className="space-y-3">
@@ -256,16 +346,23 @@ import { cn } from "@/lib/utils"
              <Textarea
                value={formData.message}
                onChange={updateField("message")}
+               placeholder={
+                 "例）\n対象物：○○（素材・サイズ）\n目的：復元 / 試作 / 干渉確認\n希望納期：○月○日頃\n図面/データ：有（形式：STL）/ 無"
+               }
                rows={5}
                required
              />
+             <p className="text-xs text-muted-foreground">
+               {"※詳細な検討のため、対象物の素材・サイズ・目的を記載してください。"}
+             </p>
            </FieldGroup>
  
-           <div className="space-y-3">
+            <div className="space-y-3">
              <div className="flex items-start gap-3">
                <Checkbox
                  id="consent"
                  checked={consent}
+                 className="mt-1"
                  onCheckedChange={(checked) =>
                    setConsent(checked === true)
                  }
@@ -279,7 +376,7 @@ import { cn } from "@/lib/utils"
                  <span className="ml-2 text-muted-foreground">
                   <Link
                     href="/notice"
-                    className="text-primary hover:underline"
+                    className="text-foreground/70 hover:text-foreground/90 hover:underline"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -317,7 +414,13 @@ import { cn } from "@/lib/utils"
            <SummaryRow label="お問い合わせ種別" value={formData.inquiryType} />
            <SummaryRow label="内容" value={formData.message} />
            <SummaryRow label="注意事項同意" value="合意する" />
- 
+
+           {submitError && (
+             <div className="rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+               {submitError}
+             </div>
+           )}
+
            <div className="flex flex-wrap justify-end gap-3">
              <Button
                type="button"
@@ -326,8 +429,8 @@ import { cn } from "@/lib/utils"
              >
                {"戻る"}
              </Button>
-             <Button type="button" onClick={() => setStep("complete")}>
-               {"送信する"}
+             <Button type="button" onClick={handleSubmit} disabled={isSubmitting}>
+               {isSubmitting ? "送信中..." : "送信する"}
              </Button>
            </div>
          </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -9,7 +8,7 @@ import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業",
+  title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業株式会社",
   description:
     "現物を精密にスキャンし、形状・構造を3Dデータとして取得。図面がない状態からの技術検討が可能です。",
 }
@@ -101,8 +100,6 @@ const noticeSummary = [
 export default function ScanPage() {
   return (
     <main>
-      <NoticeBanner />
-
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <Image
@@ -256,11 +253,13 @@ export default function ScanPage() {
           </div>
           <Reveal>
             <p className="mt-6 text-foreground">
-              {"※詳細は後日整理予定です"}
+              {
+                "詳細な条件は対象物の形状・材質により異なります。事前にご相談ください。"
+              }
             </p>
             <Link
               href="/notice"
-              className="mt-4 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+              className="mt-4 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
             >
               {"注意事項を詳しく見る"}
             </Link>
@@ -350,7 +349,7 @@ export default function ScanPage() {
               </ul>
               <Link
                 href="/faq"
-                className="mt-6 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
               >
                 {"FAQを詳しく見る"}
               </Link>

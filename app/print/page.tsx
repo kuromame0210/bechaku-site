@@ -1,14 +1,13 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import Link from "next/link"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業",
+  title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業株式会社",
   description:
     "3Dデータをもとに試作品を造形。組付け・干渉確認、形状検討など、設計検討を実物で進められます。",
 }
@@ -91,8 +90,6 @@ const noticeSummary = [
 export default function PrintPage() {
   return (
     <main>
-      <NoticeBanner />
-
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <Image
@@ -232,7 +229,9 @@ export default function PrintPage() {
               </p>
             </div>
             <p className="mt-6 text-foreground">
-              {"※量産対応・事例紹介は後日追加予定です"}
+              {
+                "量産や事例については内容により個別にご案内します。ご相談ください。"
+              }
             </p>
           </Reveal>
         </div>
@@ -320,7 +319,7 @@ export default function PrintPage() {
               </ul>
               <Link
                 href="/faq"
-                className="mt-6 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
               >
                 {"FAQを詳しく見る"}
               </Link>
@@ -363,7 +362,7 @@ export default function PrintPage() {
               </ul>
               <Link
                 href="/notice"
-                className="mt-6 inline-flex text-sm font-medium text-primary transition-colors hover:text-primary/80"
+                className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
               >
                 {"注意事項を詳しく見る"}
               </Link>

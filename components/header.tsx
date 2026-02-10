@@ -6,7 +6,6 @@ import { Menu, X } from "lucide-react"
 
 const navItems = [
   { label: "トップ", href: "/" },
-  { label: "アニメトップ", href: "/test-top-animation" },
   { label: "3Dスキャン", href: "/scan" },
   { label: "3Dプリント", href: "/print" },
   { label: "会社案内", href: "/company" },
@@ -20,7 +19,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-card">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link href="/" className="text-xl font-bold text-primary">
-          {"別役ロボット工業"}
+          {"別役ロボット工業株式会社"}
         </Link>
 
         {/* Desktop nav */}
@@ -29,7 +28,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="whitespace-nowrap text-base font-medium text-foreground transition-colors hover:text-primary"
+              className="whitespace-nowrap text-base font-medium text-foreground transition-colors hover:text-primary hover:underline"
             >
               {item.label}
             </Link>
@@ -59,7 +58,7 @@ export function Header() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="block py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
+                  className="block py-2 text-base font-medium text-foreground transition-colors hover:text-primary hover:underline"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

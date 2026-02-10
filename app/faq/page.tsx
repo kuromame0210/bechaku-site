@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { NoticeBanner } from "@/components/notice-banner"
 import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 import {
@@ -10,7 +9,7 @@ import {
 } from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "よくあるご質問（FAQ） | 別役ロボット工業",
+  title: "よくあるご質問（FAQ） | 別役ロボット工業株式会社",
   description:
     "3Dスキャン・3Dプリントに関するよくあるご質問をまとめています。",
 }
@@ -78,8 +77,6 @@ const faqItems = [
 export default function FaqPage() {
   return (
     <main>
-      <NoticeBanner />
-
       {/* Page heading */}
       <section className="bg-card py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6">

@@ -59,6 +59,41 @@
     pointer-events: auto;
   }
 
+  .hover-sheen {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hover-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-120%);
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.22) 40%,
+      rgba(255, 255, 255, 0.14) 55%,
+      transparent 100%
+    );
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .hover-sheen:hover::after {
+    opacity: 1;
+    animation: hover-sheen 620ms ease-out;
+  }
+
+  @keyframes hover-sheen {
+    from {
+      transform: translateX(-120%);
+    }
+    to {
+      transform: translateX(120%);
+    }
+  }
+
 
   .text-sm {
     font-size: 1.0625rem;
@@ -94,6 +129,16 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   :root {
     --background: 210 20% 98%;
     --foreground: 215 25% 15%;

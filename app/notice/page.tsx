@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
-import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 
 export const metadata: Metadata = {
-  title: "注意事項 | 別役ロボット工業",
+  title: "注意事項 | 別役ロボット工業株式会社",
   description:
     "本サービスをご検討・ご依頼いただく前に、あらかじめご確認いただきたい注意事項をまとめています。",
 }
@@ -60,8 +59,6 @@ const notices = [
 export default function NoticePage() {
   return (
     <main>
-      <NoticeBanner />
-
       {/* Page header */}
       <section className="bg-card py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-6">

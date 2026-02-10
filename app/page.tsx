@@ -2,10 +2,10 @@ import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { NoticeBanner } from "@/components/notice-banner"
 import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
+import { HeroRotator } from "@/components/hero-rotator"
 
 const capabilities = [
   {
@@ -29,16 +29,16 @@ const capabilities = [
     title: "旧パーツ・部品の復元",
     description:
       "生産中止部品や入手困難なパーツを、スキャン・データ化を経て復元します。",
-    href: null,
-    linkLabel: null,
+    href: "/faq",
+    linkLabel: "FAQを見る",
   },
   {
     image: "/images/icon-prototype.webp",
     title: "試作・量産（カスタム）",
     description:
       "試作から小ロット量産、カスタム対応まで。目的に応じた造形方法をご提案します。",
-    href: null,
-    linkLabel: null,
+    href: "/faq",
+    linkLabel: "FAQを見る",
   },
 ]
 
@@ -64,59 +64,28 @@ const recommendationPoints = [
 export default function HomePage() {
   return (
     <main>
-      <NoticeBanner />
-
       {/* Hero */}
-      <section className="relative overflow-hidden py-16 md:py-24">
-        <Image
-          src="/images/homepage-hero.webp"
-          alt="3Dスキャン・3Dプリントの設備イメージ"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
+      <section className="relative min-h-[420px] overflow-hidden py-16 md:min-h-[560px] md:py-24 lg:min-h-[640px]">
+        <HeroRotator intervalMs={5000} />
         <div className="absolute inset-0 bg-black/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-6">
-          <Reveal className="reveal--scroll">
-            <h1 className="text-balance font-bold leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-              {"実物から、解析・データ化・復元・試作まで。"}
-              <br />
-              {"3Dスキャン・3Dプリントによるリバースエンジニアリング"}
-            </h1>
-          </Reveal>
-          <Reveal className="reveal--scroll">
-            <p className="mt-4 leading-relaxed text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-              {"図面がなくても、現物があれば技術的に成立するかを判断し、形にします。"}
-            </p>
-          </Reveal>
-          <Reveal className="reveal--scroll">
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="min-w-[180px] px-6 text-base md:text-lg"
-              >
-                <Link href="/scan">{"3Dスキャンとは"}</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="min-w-[180px] px-6 text-base md:text-lg"
-              >
-                <Link href="/print">{"3Dプリントとは"}</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="min-w-[180px] px-6 text-base md:text-lg"
-              >
-                <Link href="/contact">{"お問い合わせ"}</Link>
-              </Button>
-            </div>
-          </Reveal>
+          <h1 className="text-balance font-bold leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
+            {"実物から、解析・データ化・復元・試作まで。"}
+            <br />
+            {"3Dスキャン・3Dプリントによるリバースエンジニアリング"}
+          </h1>
+          <p className="mt-4 leading-relaxed text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
+            {"図面がなくても、現物があれば技術的に成立するかを判断し、形にします。"}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="min-w-[180px] px-6 text-base md:text-lg"
+            >
+              <Link href="/contact">{"お問い合わせ"}</Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -127,7 +96,7 @@ export default function HomePage() {
             <p className="leading-loose text-muted-foreground">
               {"図面が残っていない部品、生産中止のパーツ、構造の把握が必要な製品。"}
               <br/>
-              {"こうした課題に対して、3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、一貫した対応を行っています。"}
+              {"こうした課題に対して、3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、一貫した対応が可能です。"}
               </p>
           </Reveal>
         </div>
@@ -140,55 +109,48 @@ export default function HomePage() {
             <SectionHeading>{"できること"}</SectionHeading>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {capabilities.map((item) => (
-              <div key={item.title}>
-                <Card className="overflow-hidden border-border">
-                  <Reveal className="reveal--scroll">
-                    <div className="relative aspect-[16/9] w-full">
-                      <Image
-                        src={item.image || "/placeholder.svg"}
-                        alt={item.title}
-                        fill
-                        className={
-                          item.title === "実物 → 3Dデータ化" ||
-                          item.title === "3Dデータ → 造形"
-                            ? "object-contain"
-                            : "object-cover"
-                        }
-                        sizes="(max-width: 640px) 100vw, 50vw"
-                      />
-                    </div>
-                  </Reveal>
-                  <CardContent className="flex flex-col gap-3 p-6">
+            {capabilities.map((item) => {
+              const href = item.href ?? "/contact"
+              const linkLabel = item.linkLabel ?? "詳細はお問い合わせへ"
+              return (
+                <Link key={item.title} href={href} className="group block">
+                  <Card className="hover-sheen overflow-hidden border-border transition-[box-shadow,border-color,transform] group-hover:scale-[1.02] group-hover:shadow-lg group-hover:border-primary/70">
                     <Reveal className="reveal--scroll">
-                      <h3 className="font-semibold text-foreground">
-                        {item.title}
-                      </h3>
+                      <div className="relative aspect-[16/9] w-full">
+                        <Image
+                          src={item.image || "/placeholder.svg"}
+                          alt={item.title}
+                          fill
+                          className={
+                            item.title === "実物 → 3Dデータ化" ||
+                            item.title === "3Dデータ → 造形"
+                              ? "object-contain"
+                              : "object-cover"
+                          }
+                          sizes="(max-width: 640px) 100vw, 50vw"
+                        />
+                      </div>
                     </Reveal>
-                    <Reveal className="reveal--scroll">
-                      <p className="leading-relaxed text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </Reveal>
-                    <Reveal className="reveal--scroll">
-                      {item.href ? (
-                        <Link
-                          href={item.href}
-                          className="mt-1 text-sm font-medium text-primary transition-colors hover:text-primary/80"
-                        >
-                          {item.linkLabel}
-                          {" →"}
-                        </Link>
-                      ) : (
-                        <p className="mt-1 text-muted-foreground">
-                          {"※概要は掲載済み。詳細は個別にご案内します。"}
+                    <CardContent className="flex flex-col gap-3 p-6">
+                      <Reveal className="reveal--scroll">
+                        <h3 className="font-semibold text-foreground">
+                          {item.title}
+                        </h3>
+                      </Reveal>
+                      <Reveal className="reveal--scroll">
+                        <p className="leading-relaxed text-muted-foreground">
+                          {item.description}
                         </p>
-                      )}
-                    </Reveal>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
+                      </Reveal>
+                      <span className="mt-1 text-sm font-medium text-primary transition-colors group-hover:text-primary/80 group-hover:underline">
+                        {linkLabel}
+                        {" →"}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -198,7 +160,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="mt-2 grid gap-4 md:grid-cols-2">
             <Reveal className="reveal--scroll">
-              <div className="rounded-xl border border-border bg-card p-6">
+              <div className="rounded-xl p-6">
                 <h2 className="font-semibold text-foreground">
                   {"解決できること"}
                 </h2>
@@ -213,7 +175,7 @@ export default function HomePage() {
               </div>
             </Reveal>
             <Reveal className="reveal--scroll">
-              <div className="rounded-xl border border-border bg-card p-6">
+              <div className="rounded-xl p-6">
                 <h2 className="font-semibold text-foreground">
                   {"こんな人におすすめ"}
                 </h2>
