@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 
 const capabilities = [
   {
-    image: "/images/prototype-print.jpg",
+    image: "/images/prototype-print.webp",
     text: "試作品の造形",
   },
   {
-    image: "/images/3d-printer-setup.jpeg",
+    image: "/images/3d-printer-setup.webp",
     text: "組み付け確認前の確認",
   },
   {
@@ -97,7 +97,7 @@ export default function PrintPage() {
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <Image
-          src="/images/section-bg.jpg"
+          src="/images/section-bg.webp"
           alt=""
           fill
           className="object-cover"
@@ -248,7 +248,7 @@ export default function PrintPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/3d-printer-setup.jpeg"
+                    src="/images/3d-printer-setup.webp"
                     alt="3Dプリンタ設備のイメージ"
                     fill
                     className="object-cover"
@@ -296,7 +296,7 @@ export default function PrintPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/output-restoration.png"
+                    src="/images/output-restoration.webp"
                     alt="部品の復元イメージ"
                     fill
                     className="object-contain"
@@ -339,7 +339,7 @@ export default function PrintPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/part-standalone-photo.jpg"
+                    src="/images/part-standalone-photo.webp"
                     alt="注意事項に関連する部品のイメージ"
                     fill
                     className="object-contain"

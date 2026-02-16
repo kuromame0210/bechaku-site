@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const capabilities = [
   {
-    image: "/images/hero-scan-scene.png",
+    image: "/images/scan-capability-precision.webp",
     text: "実物を精密にスキャン",
   },
   {
@@ -120,7 +120,7 @@ export default function ScanPage() {
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <Image
-          src="/images/section-bg.jpg"
+          src="/images/section-bg.webp"
           alt=""
           fill
           className="object-cover"
@@ -223,9 +223,9 @@ export default function ScanPage() {
             </Reveal>
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
-                <div className="relative aspect-[16/9] w-full">
+                <div className="relative aspect-[2331/2673] w-full">
                   <Image
-                    src="/images/hero-scan-scene.png"
+                    src="/images/hero-scan-scene.webp"
                     alt="3Dスキャナの特徴イメージ"
                     fill
                     className="object-cover"
@@ -271,7 +271,7 @@ export default function ScanPage() {
           <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
-                <div className="relative aspect-[16/9] w-full">
+                <div className="relative aspect-[1553/2074] w-full">
                   <Image
                     src="/images/scan-usecase.webp"
                     alt="スキャン作業のイメージ"
@@ -426,7 +426,7 @@ export default function ScanPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/output-restoration.png"
+                    src="/images/output-restoration.webp"
                     alt="部品の復元イメージ"
                     fill
                     className="object-contain"

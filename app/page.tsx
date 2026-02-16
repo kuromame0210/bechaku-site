@@ -50,22 +50,22 @@ const consultationPoints = [
 
 const outputs = [
   {
-    image: "/images/output-data.png",
+    image: "/images/output-data.webp",
     title: "3Dデータ",
     description: "形状・寸法の整理、検討用のデータ化まで対応します。",
   },
   {
-    image: "/images/output-prototype.jpg",
+    image: "/images/output-prototype.webp",
     title: "試作モデル",
     description: "形状確認・組付け確認など、評価用の造形を行います。",
   },
   {
-    image: "/images/output-restoration.png",
+    image: "/images/output-restoration.webp",
     title: "復元パーツ",
     description: "生産終了品の再調達や復元検討に活用できます。",
   },
   {
-    image: "/images/output-jig.png",
+    image: "/images/output-jig.webp",
     title: "治具・補助具",
     description: "現場導入に向けた治具や補助具の内製化に対応します。",
   },
@@ -73,7 +73,7 @@ const outputs = [
 
 const worries = [
   {
-    image: "/images/worries-design.png",
+    image: "/images/worries-design.webp",
     category: "設計",
     headline: "設計品質UP",
     badgeClass:
@@ -84,7 +84,7 @@ const worries = [
     after: "短スパンで造形・評価でき、手戻りを抑えて精度を詰められる。",
   },
   {
-    image: "/images/worries-prototype.png",
+    image: "/images/worries-prototype.webp",
     category: "試作",
     headline: "期間短縮",
     badgeClass:
@@ -95,7 +95,7 @@ const worries = [
     after: "外観だけでなく機能検証まででき、検証の前倒しができる。",
   },
   {
-    image: "/images/worries-design-process.png",
+    image: "/images/worries-design-process.webp",
     category: "デザイン",
     headline: "意思決定をスムーズに",
     badgeClass:
@@ -106,7 +106,7 @@ const worries = [
     after: "すぐに形にできるので、判断材料がそろい意思決定できる。",
   },
   {
-    image: "/images/worries-sales.png",
+    image: "/images/worries-sales.webp",
     category: "営業",
     headline: "提案力UP",
     badgeClass:
@@ -117,7 +117,7 @@ const worries = [
     after: "本格的なモックアップで提案でき、商談の手応えが得られる。",
   },
   {
-    image: "/images/worries-manufacturing.png",
+    image: "/images/worries-manufacturing.webp",
     category: "製造",
     headline: "コスト削減",
     badgeClass:
@@ -166,63 +166,6 @@ export default function HomePage() {
               {"こうした課題に対して、3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、一貫した対応が可能です。"}
               </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* Worries */}
-      <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading>{"よくあるお悩みと解決"}</SectionHeading>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            {"課題と解決の関係を、Before/Afterで直感的に把握できます。"}
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {worries.map((item) => (
-              <Card
-                key={`${item.category}-${item.headline}`}
-                className={`overflow-hidden border-2 transition-colors ${item.borderClass} ${item.hoverClass}`}
-              >
-                <Reveal className="reveal--scroll">
-                  <div className="hover-sheen relative aspect-[16/9] w-full">
-                    <Image
-                      src={item.image}
-                      alt={item.headline}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                    />
-                  </div>
-                </Reveal>
-                <CardContent className="flex flex-col gap-3 p-6">
-                  <div className="flex flex-col gap-2">
-                    <span
-                      className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${item.badgeClass}`}
-                    >
-                      {item.category}
-                    </span>
-                    <h3 className="font-semibold text-foreground">
-                      {item.headline}
-                    </h3>
-                  </div>
-                  <div className="flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
-                    <div className="border-t border-border/70 pt-3">
-                      <span className="mb-2 block text-xs font-semibold text-slate-600">
-                        {"Before"}
-                      </span>
-                      <p>{item.before}</p>
-                    </div>
-                    <div className="border-t border-border/70 pt-3">
-                      <span className="mb-2 block text-xs font-semibold text-primary">
-                        {"After"}
-                      </span>
-                      <p>{item.after}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
         </div>
       </section>
 
@@ -311,6 +254,65 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+
+      {/* Worries */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <SectionHeading>{"よくあるお悩みと解決"}</SectionHeading>
+          <p className="mt-3 leading-relaxed text-muted-foreground">
+            {"課題と解決の関係を、Before/Afterで直感的に把握できます。"}
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {worries.map((item) => (
+              <Card
+                key={`${item.category}-${item.headline}`}
+                className={`overflow-hidden border-2 transition-colors ${item.borderClass} ${item.hoverClass}`}
+              >
+                <Reveal className="reveal--scroll">
+                  <div className="hover-sheen relative aspect-[16/9] w-full">
+                    <Image
+                      src={item.image}
+                      alt={item.headline}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                    />
+                  </div>
+                </Reveal>
+                <CardContent className="flex flex-col gap-3 p-6">
+                  <div className="flex flex-col gap-2">
+                    <span
+                      className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${item.badgeClass}`}
+                    >
+                      {item.category}
+                    </span>
+                    <h3 className="font-semibold text-foreground">
+                      {item.headline}
+                    </h3>
+                  </div>
+                  <div className="flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
+                    <div className="border-t border-border/70 pt-3">
+                      <span className="mb-2 block text-xs font-semibold text-slate-600">
+                        {"Before"}
+                      </span>
+                      <p>{item.before}</p>
+                    </div>
+                    <div className="border-t border-border/70 pt-3">
+                      <span className="mb-2 block text-xs font-semibold text-primary">
+                        {"After"}
+                      </span>
+                      <p>{item.after}</p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
 
       {/* Consultation guidance */}
       <section className="border-t border-border py-14 md:py-18">

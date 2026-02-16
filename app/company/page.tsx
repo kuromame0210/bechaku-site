@@ -17,27 +17,39 @@ const aboutText = [
 ]
 
 const industryItems = [
-  { title: "業界", description: "精密機械分野・工作機械分野" },
-  { title: "工程", description: "組立・加工・電気配線" },
-  { title: "大きさ", description: "卓上サイズ～超大物まで" },
+  {
+    title: "業界",
+    description: "精密機械分野・工作機械分野",
+    image: "/images/industry-precision-machines.jpg",
+  },
+  {
+    title: "工程",
+    description: "組立・加工・電気配線",
+    image: "/images/process-electrical-wiring.jpg",
+  },
+  {
+    title: "大きさ",
+    description: "卓上サイズ～超大物まで",
+    image: "/images/size-large-workpiece.webp",
+  },
 ]
 
 const strengths = [
   {
     title: "精密機械分野での実績",
-    image: "/images/factory-robot-arm.webp",
+    image: "/images/circuit-board-assembly-2.webp",
     description:
       "半導体製造装置を中心とした精密機械分野において、長年にわたる実務実績があります。",
   },
   {
     title: "総合的な対応力",
-    image: "/images/wiring-work.jpg",
+    image: "/images/wiring-work.webp",
     description:
       "組立・加工・電気配線を社内で一貫対応。工程間の調整ロスを抑え、品質と納期の両立を図ります。",
   },
   {
     title: "実務経験豊富な人材力",
-    image: "/images/circuit-board-assembly-2.jpg",
+    image: "/images/print-flow-icon.webp",
     description:
       "現場を熟知したスタッフが在籍しており、技術的な課題に対して的確な判断と柔軟な対応が可能です。",
   },
@@ -147,7 +159,20 @@ export default function CompanyPage() {
             {industryItems.map((item) => (
               <Reveal key={item.title}>
                 <div className="h-full overflow-hidden border border-border/70 bg-white">
-                  <div className="flex h-full flex-col gap-3 p-6">
+                  {item.image && (
+                    <div className="relative aspect-[16/9] w-full">
+                      <Image
+                        src={item.image}
+                        alt={`${item.title}のイメージ`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <div
+                    className={`flex h-full flex-col gap-3 p-6${item.image ? " border-t border-border/70" : ""}`}
+                  >
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/70">
                       {item.title}
                     </p>

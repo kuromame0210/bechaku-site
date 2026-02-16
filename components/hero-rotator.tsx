@@ -9,11 +9,11 @@ const slides = [
     alt: "3Dプリンタ・3Dスキャナのイメージ",
   },
   {
-    src: "/images/3d-printer-setup.jpeg",
+    src: "/images/3d-printer-setup.webp",
     alt: "3Dプリンタ設備のイメージ",
   },
   {
-    src: "/images/hero-scan-scene.png",
+    src: "/images/hero-scan-scene.webp",
     alt: "3Dスキャン作業のイメージ",
   },
 ]
