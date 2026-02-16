@@ -227,19 +227,6 @@ export default function CompanyPage() {
                   </div>
                 ))}
               </dl>
-              <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                <span className="border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary/80">
-                  {"アクセスマップ"}
-                </span>
-                <span className="border border-primary/20 bg-primary/5 px-3 py-1 text-xs text-primary/80">
-                  {"個人情報取り扱いについて"}
-                </span>
-              </div>
-              <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-                {
-                  "お客様からいただく個人情報は、採用の為だけの情報として、利用させていただきます。"
-                }
-              </p>
             </div>
           </Reveal>
         </div>

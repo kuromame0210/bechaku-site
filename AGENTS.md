@@ -102,3 +102,4 @@ Phase 2: 実装
 **AGENTS.md ＋ 各タスクに status / requirements / research / design**  
 これだけで運用は成立する。
 
+簡単にできるもの（１手でできるようなものはタスクにしなくていい）

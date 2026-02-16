@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const capabilities = [
   {
-    image: "/images/icon-scan.webp",
+    image: "/images/hero-scan-scene.png",
     text: "実物を精密にスキャン",
   },
   {
@@ -33,6 +33,23 @@ const useCases = [
   "古い設備で仕様や寸法が分からない",
   "海外製・他社製部品の形状を正確に把握したい",
   "まず技術的に可能か判断したい",
+]
+
+const scanSpecs = [
+  "部品を360度精密スキャン（裏側も3D計測）",
+  "対応サイズ: 40-580mm",
+  "自動ノイズ処理",
+  "フルカラー出力",
+  "AIによる自動計測、測定結果を自社フォーマットでエクスポート",
+  "出力形式: DXF / STL / OBJ / STEP / 3MF",
+]
+
+const scanApplications = [
+  "丸ごとスキャンしたデータをカラー出力し、メタバース空間で活用",
+  "スペアパーツの作成",
+  "図面なし部品 / CADデータなし部品のCAD化",
+  "デジタルアーカイブ（文化財などの現物を3Dデータとして保存）",
+  "リバースエンジニアリング（解析・3Dプリンタ連携で復元・量産）",
 ]
 
 const cautions = [
@@ -175,6 +192,52 @@ export default function ScanPage() {
         </div>
       </section>
 
+      {/* Specs */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"仕様・特徴"}</SectionHeading>
+          </Reveal>
+          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <ul className="flex flex-col gap-3">
+                {scanSpecs.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                  >
+                    <span className="list-dot" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Button asChild className="mt-6" size="lg">
+                <Link
+                  href="/pdfs/vl-800-catalog.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {"カタログPDFを見る"}
+                </Link>
+              </Button>
+            </Reveal>
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
+                    src="/images/hero-scan-scene.png"
+                    alt="3Dスキャナの特徴イメージ"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Use cases */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
@@ -196,6 +259,43 @@ export default function ScanPage() {
               ))}
             </ul>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Applications */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"活用例"}</SectionHeading>
+          </Reveal>
+          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
+                    src="/images/scan-usecase.webp"
+                    alt="スキャン作業のイメージ"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </Reveal>
+            <Reveal>
+              <ul className="flex flex-col gap-3">
+                {scanApplications.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                  >
+                    <span className="list-dot" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
         </div>
       </section>
 
@@ -326,8 +426,8 @@ export default function ScanPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/part-standalone-photo.jpg"
-                    alt="部品の写真イメージ"
+                    src="/images/output-restoration.png"
+                    alt="部品の復元イメージ"
                     fill
                     className="object-contain"
                     sizes="(max-width: 768px) 100vw, 45vw"

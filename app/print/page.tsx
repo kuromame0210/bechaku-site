@@ -5,6 +5,7 @@ import { SectionHeading } from "@/components/section-heading"
 import Link from "next/link"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
+import { Button } from "@/components/ui/button"
 
 export const metadata: Metadata = {
   title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業株式会社",
@@ -18,7 +19,7 @@ const capabilities = [
     text: "試作品の造形",
   },
   {
-    image: "/images/pre-assembly-check.jpg",
+    image: "/images/3d-printer-setup.jpeg",
     text: "組み付け確認前の確認",
   },
   {
@@ -34,11 +35,14 @@ const useCases = [
   "量産前にリスクを減らしたい",
 ]
 
-const benefits = [
-  "形状・サイズ感の確認",
-  "組付け・干渉の事前チェック",
-  "設計変更の影響確認",
+const printerSpecs = [
+  "割れにくいアクリル樹脂/シリコンゴムで造形可能",
+  "耐水性・透明性・靭性のある造形材料を使用可能",
+  "造形材料は15-30μmの積層ピッチで造形",
+  "1/100mmオーダーの高精度",
+  "複雑な形状でも細部まで十分な精度で検証可能",
 ]
+
 
 const flowSteps = [
   {
@@ -102,9 +106,19 @@ export default function PrintPage() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
-              <SectionHeading tag="h1">
-                {"3Dデータから造形・試作（3Dプリント）"}
-              </SectionHeading>
+              <div className="flex flex-col gap-6">
+                <SectionHeading tag="h1">
+                  {"3Dデータから造形・試作（3Dプリント）"}
+                </SectionHeading>
+                <div className="flex flex-wrap gap-3">
+                  <Button asChild size="lg">
+                    <Link href="/contact">{"お問い合わせ"}</Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg">
+                    <Link href="#flow">{"取引の流れを見る"}</Link>
+                  </Button>
+                </div>
+              </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                 <Image
                   src="/images/3d-printer-aglista.webp"
@@ -120,7 +134,7 @@ export default function PrintPage() {
       </section>
 
       {/* Capabilities */}
-      <section id="flow" className="border-t border-border py-14 md:py-18">
+      <section className="border-t border-border py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <SectionHeading sub="3Dプリントで対応できる基本的な内容です。">
@@ -152,6 +166,52 @@ export default function PrintPage() {
         </div>
       </section>
 
+      {/* Specs */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading>{"仕様・特徴"}</SectionHeading>
+          </Reveal>
+          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <ul className="flex flex-col gap-3">
+                {printerSpecs.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
+                  >
+                    <span className="list-dot" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Button asChild className="mt-6" size="lg">
+                <Link
+                  href="/pdfs/agilista-catalog.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {"カタログPDFを見る"}
+                </Link>
+              </Button>
+            </Reveal>
+            <Reveal>
+              <div className="overflow-hidden rounded-2xl">
+                <div className="relative aspect-[16/9] w-full">
+                  <Image
+                    src="/images/print-feature.webp"
+                    alt="3Dプリントの仕様・特徴イメージ"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 45vw"
+                  />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Use cases */}
       <section className="border-t border-border bg-secondary py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
@@ -176,69 +236,9 @@ export default function PrintPage() {
         </div>
       </section>
 
-      {/* Benefits of prototyping */}
-      <section className="border-t border-border py-14 md:py-18">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal>
-            <SectionHeading>{"試作で得られること"}</SectionHeading>
-          </Reveal>
-          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
-            <Reveal>
-              <div className="overflow-hidden rounded-2xl">
-                <div className="relative aspect-[16/9] w-full">
-                  <Image
-                    src="/images/prototype-print.jpg"
-                    alt="試作品の造形イメージ"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                  />
-                </div>
-              </div>
-            </Reveal>
-            <Reveal>
-              <ul className="flex flex-col gap-3">
-                {benefits.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-                  >
-                    <span className="list-dot" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Next steps */}
-      <section className="border-t border-border bg-secondary py-14 md:py-18">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal>
-            <SectionHeading>{"次のステップ"}</SectionHeading>
-          </Reveal>
-          <Reveal>
-            <div className="mt-6 flex flex-col gap-3">
-              <p className="leading-loose text-muted-foreground">
-                {"スキャン → 試作 → 検討 → 必要に応じて再設計・再試作。"}
-              </p>
-              <p className="leading-loose text-muted-foreground">
-                {"目的に合わせて段階的に進められます。一度の試作で完成を求める必要はありません。"}
-              </p>
-            </div>
-            <p className="mt-6 text-foreground">
-              {
-                "量産や事例については内容により個別にご案内します。ご相談ください。"
-              }
-            </p>
-          </Reveal>
-        </div>
-      </section>
 
       {/* Flow */}
-      <section className="border-t border-border py-14 md:py-18">
+      <section id="flow" className="border-t border-border py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
             <SectionHeading>{"取引の流れ"}</SectionHeading>
@@ -296,10 +296,10 @@ export default function PrintPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/wiring-work.jpg"
-                    alt="問い合わせ対応のイメージ"
+                    src="/images/output-restoration.png"
+                    alt="部品の復元イメージ"
                     fill
-                    className="object-cover"
+                    className="object-contain"
                     sizes="(max-width: 768px) 100vw, 45vw"
                   />
                 </div>

@@ -13,8 +13,8 @@ const slides = [
     alt: "3Dプリンタ設備のイメージ",
   },
   {
-    src: "/images/icon-3d-data.webp",
-    alt: "3Dデータ化のイメージ",
+    src: "/images/hero-scan-scene.png",
+    alt: "3Dスキャン作業のイメージ",
   },
 ]
 
