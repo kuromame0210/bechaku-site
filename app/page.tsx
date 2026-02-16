@@ -135,9 +135,9 @@ export default function HomePage() {
       <section className="relative min-h-[420px] overflow-hidden py-16 md:min-h-[560px] md:py-24 lg:min-h-[640px]">
         <HeroRotator intervalMs={5000} />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:max-w-[84rem]">
           <h1 className="text-balance font-bold leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]">
-            {"実物から、解析・データ化・復元・試作まで。"}
+            {"実物から解析・データ化・復元・試作まで"}
             <br />
             {"3Dスキャン・3Dプリントによるリバースエンジニアリング"}
           </h1>

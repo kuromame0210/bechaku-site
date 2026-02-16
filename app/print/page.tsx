@@ -19,8 +19,8 @@ const capabilities = [
     text: "試作品の造形",
   },
   {
-    image: "/images/3d-printer-setup.webp",
-    text: "組み付け確認前の確認",
+    image: "/images/output-prototype.webp",
+    text: "組み付け前の確認",
   },
   {
     image: "/images/icon-small-batch.webp",
@@ -119,7 +119,7 @@ export default function PrintPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              <div className="relative hidden aspect-[4/3] w-full overflow-hidden rounded-2xl md:block">
                 <Image
                   src="/images/3d-printer-aglista.webp"
                   alt="3Dプリンタの設備イメージ"
@@ -339,7 +339,7 @@ export default function PrintPage() {
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
                   <Image
-                    src="/images/part-standalone-photo.webp"
+                    src="/images/precision-assembly-scene.webp"
                     alt="注意事項に関連する部品のイメージ"
                     fill
                     className="object-contain"

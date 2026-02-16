@@ -145,7 +145,7 @@ export default function ScanPage() {
                   </Button>
                 </div>
               </div>
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
+              <div className="relative hidden aspect-[4/3] w-full overflow-hidden rounded-2xl md:block">
                 <Image
                   src="/images/3d-scanner-vl-700.webp"
                   alt="3Dスキャナの設備イメージ"
@@ -222,7 +222,7 @@ export default function ScanPage() {
               </Button>
             </Reveal>
             <Reveal>
-              <div className="overflow-hidden rounded-2xl">
+              <div className="w-full overflow-hidden rounded-2xl md:mx-auto md:max-w-[480px]">
                 <div className="relative aspect-[2331/2673] w-full">
                   <Image
                     src="/images/hero-scan-scene.webp"
@@ -270,7 +270,7 @@ export default function ScanPage() {
           </Reveal>
           <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
             <Reveal>
-              <div className="overflow-hidden rounded-2xl">
+              <div className="w-full overflow-hidden rounded-2xl md:mx-auto md:max-w-[480px]">
                 <div className="relative aspect-[1553/2074] w-full">
                   <Image
                     src="/images/scan-usecase.webp"
