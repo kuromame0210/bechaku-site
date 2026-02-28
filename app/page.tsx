@@ -1,4 +1,4 @@
-import Image from "next/image"
+import { ImageWithFallback } from "@/components/image-with-fallback"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -148,7 +148,7 @@ export default function HomePage() {
             <Button
               asChild
               size="lg"
-              className="min-w-[180px] px-6 text-base md:text-lg"
+              className="min-w-[180px] px-6 text-[1.25rem] md:text-[1.5rem]"
             >
               <Link href="/contact">{"お問い合わせ"}</Link>
             </Button>
@@ -167,6 +167,16 @@ export default function HomePage() {
               </p>
           </Reveal>
         </div>
+
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 pt-12 sm:flex-row sm:items-center sm:justify-center">
+          <Button asChild variant="outline" size="lg" className="min-w-[260px]">
+            <Link href="/scan">{"3Dスキャンについての詳細はこちら"}</Link>
+          </Button>
+          <Button asChild variant="outline" size="lg" className="min-w-[260px]">
+            <Link href="/print">{"3Dプリントについての詳細はこちら"}</Link>
+          </Button>
+        </div>
+
       </section>
 
       {/* Capabilities */}
@@ -182,7 +192,7 @@ export default function HomePage() {
                   <Card className="hover-sheen overflow-hidden border-border transition-shadow group-hover:shadow-lg">
                     <Reveal className="reveal--scroll">
                       <div className="hover-sheen relative aspect-[16/9] w-full">
-                        <Image
+                        <ImageWithFallback
                           src={item.image || "/placeholder.svg"}
                           alt={item.title}
                           fill
@@ -233,7 +243,7 @@ export default function HomePage() {
                 <CardContent className="flex h-full flex-col gap-3 p-6">
                   <Reveal className="reveal--scroll">
                     <div className="hover-sheen relative aspect-[16/9] w-full overflow-hidden rounded-md">
-                      <Image
+                      <ImageWithFallback
                         src={item.image}
                         alt={item.title}
                         fill
@@ -271,7 +281,7 @@ export default function HomePage() {
               >
                 <Reveal className="reveal--scroll">
                   <div className="hover-sheen relative aspect-[16/9] w-full">
-                    <Image
+                    <ImageWithFallback
                       src={item.image}
                       alt={item.headline}
                       fill

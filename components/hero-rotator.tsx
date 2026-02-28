@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import { ImageWithFallback } from "@/components/image-with-fallback"
 import { useEffect, useState } from "react"
 
 const slides = [
@@ -42,7 +42,7 @@ export function HeroRotator({ intervalMs = 5000 }: HeroRotatorProps) {
   return (
     <div className="absolute inset-0">
       {slides.map((slide, slideIndex) => (
-        <Image
+        <ImageWithFallback
           key={slide.src}
           src={slide.src}
           alt={slide.alt}

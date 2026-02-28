@@ -1,13 +1,19 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
-import { Noto_Serif_JP } from "next/font/google"
+import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google"
 
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 
+const notoSansJP = Noto_Sans_JP({
+  subsets: ["latin", "japanese"],
+  variable: "--font-noto-sans-jp",
+  weight: ["400", "500", "600", "700"],
+})
+
 const notoSerifJP = Noto_Serif_JP({
-  subsets: ["latin"],
+  subsets: ["latin", "japanese"],
   variable: "--font-noto-serif-jp",
   weight: ["400", "500", "600", "700"],
 })
@@ -45,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notoSerifJP.variable} font-sans antialiased`}
+        className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}
       >
         <Header />
         {children}

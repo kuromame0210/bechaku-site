@@ -64,6 +64,14 @@ const config: Config = {
       },
       fontFamily: {
         sans: [
+          'var(--font-noto-sans-jp)',
+          'Noto Sans JP',
+          'Hiragino Sans',
+          'Hiragino Kaku Gothic ProN',
+          'Meiryo',
+          'sans-serif',
+        ],
+        serif: [
           'var(--font-noto-serif-jp)',
           'YuMincho',
           'Yu Mincho',

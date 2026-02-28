@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Image from "next/image"
+import { ImageWithFallback } from "@/components/image-with-fallback"
 import { Card, CardContent } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
 import Link from "next/link"
@@ -119,7 +119,7 @@ export default function ScanPage() {
     <main>
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
-        <Image
+        <ImageWithFallback
           src="/images/section-bg.webp"
           alt=""
           fill
@@ -146,7 +146,7 @@ export default function ScanPage() {
                 </div>
               </div>
               <div className="relative hidden aspect-[4/3] w-full overflow-hidden rounded-2xl md:block">
-                <Image
+                <ImageWithFallback
                   src="/images/3d-scanner-vl-700.webp"
                   alt="3Dスキャナの設備イメージ"
                   fill
@@ -172,7 +172,7 @@ export default function ScanPage() {
               <Reveal key={item.text}>
                 <Card className="overflow-hidden border-border">
                   <div className="relative aspect-[16/9] w-full">
-                    <Image
+                    <ImageWithFallback
                       src={item.image || "/placeholder.svg"}
                       alt={item.text}
                       fill
@@ -224,7 +224,7 @@ export default function ScanPage() {
             <Reveal>
               <div className="w-full overflow-hidden rounded-2xl md:mx-auto md:max-w-[480px]">
                 <div className="relative aspect-[2331/2673] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/hero-scan-scene.webp"
                     alt="3Dスキャナの特徴イメージ"
                     fill
@@ -272,7 +272,7 @@ export default function ScanPage() {
             <Reveal>
               <div className="w-full overflow-hidden rounded-2xl md:mx-auto md:max-w-[480px]">
                 <div className="relative aspect-[1553/2074] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/scan-usecase.webp"
                     alt="スキャン作業のイメージ"
                     fill
@@ -331,7 +331,7 @@ export default function ScanPage() {
               <Reveal key={item.title}>
                 <Card className="overflow-hidden border-border">
                   <div className="relative aspect-[16/9] w-full">
-                    <Image
+                    <ImageWithFallback
                       src={item.image || "/placeholder.svg"}
                       alt={item.title}
                       fill
@@ -377,7 +377,7 @@ export default function ScanPage() {
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/icon-3d-data.webp"
                     alt="3Dスキャンによるデータ化イメージ"
                     fill
@@ -392,7 +392,7 @@ export default function ScanPage() {
                 {flowSteps.map((step, index) => (
                   <div key={step.number} className="flex gap-6 md:gap-10">
                     <div className="flex flex-col items-center">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground md:h-12 md:w-12 md:text-lg">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-[1.125rem] font-bold text-primary-foreground md:h-12 md:w-12 md:text-[1.25rem]">
                         {step.number}
                       </div>
                       {index < flowSteps.length - 1 && (
@@ -425,7 +425,7 @@ export default function ScanPage() {
             <Reveal className="md:order-2">
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/output-restoration.webp"
                     alt="部品の復元イメージ"
                     fill

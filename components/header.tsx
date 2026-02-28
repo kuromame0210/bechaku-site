@@ -18,7 +18,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-card">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-xl font-bold text-primary">
+        <Link
+          href="/"
+          className="text-[1.25rem] font-bold text-primary md:text-[1.5rem]"
+        >
           {"別役ロボット工業株式会社"}
         </Link>
 

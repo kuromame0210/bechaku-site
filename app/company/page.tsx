@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
-import Image from "next/image"
+import { ImageWithFallback } from "@/components/image-with-fallback"
+import Link from "next/link"
 import { SectionHeading } from "@/components/section-heading"
+import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 
@@ -115,7 +117,7 @@ export default function CompanyPage() {
                 ))}
               </div>
               <div className="relative aspect-[4/3] w-full overflow-hidden border border-border/60">
-                <Image
+                <ImageWithFallback
                   src="/images/factory-robot-arm.webp"
                   alt="工場内のロボットアーム作業イメージ"
                   fill
@@ -161,7 +163,7 @@ export default function CompanyPage() {
                 <div className="h-full overflow-hidden border border-border/70 bg-white">
                   {item.image && (
                     <div className="relative aspect-[16/9] w-full">
-                      <Image
+                      <ImageWithFallback
                         src={item.image}
                         alt={`${item.title}のイメージ`}
                         fill
@@ -202,7 +204,7 @@ export default function CompanyPage() {
                 <div className="h-full overflow-hidden border border-border/70 bg-white">
                   {block.image && (
                     <div className="relative aspect-[16/9] w-full">
-                      <Image
+                      <ImageWithFallback
                         src={block.image}
                         alt={`${block.title}のイメージ`}
                         fill
@@ -253,6 +255,15 @@ export default function CompanyPage() {
                 ))}
               </dl>
             </div>
+            <Button asChild className="mt-6" size="lg">
+              <Link
+                href="/pdfs/会社案内.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {"会社案内PDFを見る"}
+              </Link>
+            </Button>
           </Reveal>
         </div>
       </section>

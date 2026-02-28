@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Image from "next/image"
+import { ImageWithFallback } from "@/components/image-with-fallback"
 import { Card, CardContent } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
 import Link from "next/link"
@@ -96,7 +96,7 @@ export default function PrintPage() {
     <main>
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
-        <Image
+        <ImageWithFallback
           src="/images/section-bg.webp"
           alt=""
           fill
@@ -120,7 +120,7 @@ export default function PrintPage() {
                 </div>
               </div>
               <div className="relative hidden aspect-[4/3] w-full overflow-hidden rounded-2xl md:block">
-                <Image
+                <ImageWithFallback
                   src="/images/3d-printer-aglista.webp"
                   alt="3Dプリンタの設備イメージ"
                   fill
@@ -146,7 +146,7 @@ export default function PrintPage() {
               <Reveal key={item.text}>
                 <Card className="overflow-hidden border-border">
                   <div className="relative aspect-[16/9] w-full">
-                    <Image
+                    <ImageWithFallback
                       src={item.image || "/placeholder.svg"}
                       alt={item.text}
                       fill
@@ -198,7 +198,7 @@ export default function PrintPage() {
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/print-feature.webp"
                     alt="3Dプリントの仕様・特徴イメージ"
                     fill
@@ -247,7 +247,7 @@ export default function PrintPage() {
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/3d-printer-setup.webp"
                     alt="3Dプリンタ設備のイメージ"
                     fill
@@ -262,7 +262,7 @@ export default function PrintPage() {
                 {flowSteps.map((step, index) => (
                   <div key={step.number} className="flex gap-6 md:gap-10">
                     <div className="flex flex-col items-center">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-base font-bold text-primary-foreground md:h-12 md:w-12 md:text-lg">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-[1.125rem] font-bold text-primary-foreground md:h-12 md:w-12 md:text-[1.25rem]">
                         {step.number}
                       </div>
                       {index < flowSteps.length - 1 && (
@@ -295,7 +295,7 @@ export default function PrintPage() {
             <Reveal className="md:order-2">
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/output-restoration.webp"
                     alt="部品の復元イメージ"
                     fill
@@ -338,7 +338,7 @@ export default function PrintPage() {
             <Reveal>
               <div className="overflow-hidden rounded-2xl">
                 <div className="relative aspect-[16/9] w-full">
-                  <Image
+                  <ImageWithFallback
                     src="/images/precision-assembly-scene.webp"
                     alt="注意事項に関連する部品のイメージ"
                     fill

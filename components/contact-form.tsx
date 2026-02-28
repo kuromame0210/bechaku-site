@@ -175,7 +175,7 @@ export function ContactForm() {
    if (step === "complete") {
      return (
        <div className="rounded-lg border border-border bg-card p-8 text-center">
-         <h2 className="text-lg font-semibold text-foreground">
+        <h2 className="text-[1.25rem] font-semibold text-foreground md:text-[1.5rem]">
            {"送信が完了しました"}
          </h2>
          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
@@ -198,7 +198,7 @@ export function ContactForm() {
    return (
      <div className="rounded-lg border border-border bg-card p-6 md:p-8">
        <div className="mb-6 flex flex-col gap-2">
-         <h2 className="text-lg font-semibold text-foreground">
+        <h2 className="text-[1.25rem] font-semibold text-foreground md:text-[1.5rem]">
            {step === "confirm" ? "入力内容の確認" : "お問い合わせフォーム"}
          </h2>
          <p className="text-sm text-muted-foreground">
