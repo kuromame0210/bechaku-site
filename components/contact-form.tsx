@@ -11,8 +11,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
  
- type Step = "input" | "confirm" | "complete"
- 
+type Step = "input" | "confirm" | "complete"
+
 type FormData = {
   companyName: string
   contactName: string
@@ -22,6 +22,20 @@ type FormData = {
   email: string
   inquiryType: string
   message: string
+}
+
+const MAX_FILES = 3
+const MAX_TOTAL_BYTES = 10 * 1024 * 1024
+const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+const HONEYPOT_FIELD = "companyWebsite"
+
+declare global {
+  interface Window {
+    grecaptcha?: {
+      ready: (callback: () => void) => void
+      execute: (siteKey: string, options: { action: string }) => Promise<string>
+    }
+  }
 }
 
  
@@ -50,7 +64,11 @@ export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [addressNotice, setAddressNotice] = useState("")
   const [consent, setConsent] = useState(false)
-  const [files, setFiles] = useState<Array<File | null>>([null, null, null])
+  const [honeypot, setHoneypot] = useState("")
+  const [files, setFiles] = useState<Array<File | null>>(
+    Array.from({ length: MAX_FILES }, () => null),
+  )
+  const [fileError, setFileError] = useState("")
   const [formData, setFormData] = useState<FormData>({
     companyName: "",
     contactName: "",
@@ -119,11 +137,18 @@ export function ContactForm() {
   const handleFileChange =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
       const nextFile = event.target.files?.[0] ?? null
-      setFiles((prev) => {
-        const next = [...prev]
-        next[index] = nextFile
-        return next
-      })
+      const next = [...files]
+      next[index] = nextFile
+      const totalBytes = next.reduce(
+        (sum, file) => sum + (file ? file.size : 0),
+        0,
+      )
+      if (totalBytes > MAX_TOTAL_BYTES) {
+        setFileError("添付ファイルの合計容量は10MB以内にしてください。")
+        return
+      }
+      setFileError("")
+      setFiles(next)
     }
 
   const handleConfirm = (event: FormEvent<HTMLFormElement>) => {
@@ -135,14 +160,37 @@ export function ContactForm() {
        setFormError("必須項目が未入力です。入力内容をご確認ください。")
        return
      }
+     if (fileError) {
+       setFormError(fileError)
+       return
+     }
      setFormError("")
      setStep("confirm")
    }
+
+  const getRecaptchaToken = async () => {
+    if (!RECAPTCHA_SITE_KEY) {
+      throw new Error("recaptcha_missing_site_key")
+    }
+    const grecaptcha = window.grecaptcha
+    if (!grecaptcha) {
+      throw new Error("recaptcha_not_loaded")
+    }
+    return new Promise<string>((resolve, reject) => {
+      grecaptcha.ready(() => {
+        grecaptcha
+          .execute(RECAPTCHA_SITE_KEY, { action: "contact_submit" })
+          .then(resolve)
+          .catch(reject)
+      })
+    })
+  }
 
   const handleSubmit = async () => {
     setIsSubmitting(true)
     setSubmitError("")
     try {
+      const recaptchaToken = await getRecaptchaToken()
       const payload = new FormData()
       payload.set("companyName", formData.companyName)
       payload.set("contactName", formData.contactName)
@@ -152,6 +200,8 @@ export function ContactForm() {
       payload.set("email", formData.email)
       payload.set("inquiryType", formData.inquiryType)
       payload.set("message", formData.message)
+      payload.set(HONEYPOT_FIELD, honeypot)
+      payload.set("recaptchaToken", recaptchaToken)
       files.forEach((file, index) => {
         if (file) {
           payload.set(`file${index}`, file)
@@ -165,7 +215,17 @@ export function ContactForm() {
         throw new Error("send_failed")
       }
       setStep("complete")
-    } catch {
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === "recaptcha_missing_site_key") {
+          setSubmitError("reCAPTCHAの設定が未完了です。")
+          return
+        }
+        if (error.message === "recaptcha_not_loaded") {
+          setSubmitError("reCAPTCHAの読み込みに失敗しました。")
+          return
+        }
+      }
       setSubmitError("送信に失敗しました。時間をおいて再度お試しください。")
     } finally {
       setIsSubmitting(false)
@@ -309,10 +369,13 @@ export function ContactForm() {
                       </Label>
                    </div>
                  )
-               })}
+                })}
              </div>
+             {fileError && (
+               <p className="text-xs text-destructive">{fileError}</p>
+             )}
              <p className="text-xs text-muted-foreground">
-               {"※添付ファイルは3MBまで（最大3件）です。"}
+              {"※添付ファイルは合計10MBまで（最大3件）です。"}
              </p>
            </div>
  
@@ -481,3 +544,14 @@ export function ContactForm() {
      </div>
    )
  }
+          <div className="sr-only" aria-hidden="true">
+            <Label htmlFor={HONEYPOT_FIELD}>{"会社サイト"}</Label>
+            <Input
+              id={HONEYPOT_FIELD}
+              name={HONEYPOT_FIELD}
+              value={honeypot}
+              onChange={(event) => setHoneypot(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>

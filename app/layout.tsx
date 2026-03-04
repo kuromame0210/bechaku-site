@@ -1,5 +1,6 @@
 import React from "react"
 import type { Metadata, Viewport } from "next"
+import Script from "next/script"
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google"
 
 import "./globals.css"
@@ -79,11 +80,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
   return (
     <html lang="ja">
       <body
         className={`${notoSansJP.variable} ${notoSerifJP.variable} font-sans antialiased`}
       >
+        {recaptchaSiteKey ? (
+          <Script
+            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+            strategy="afterInteractive"
+          />
+        ) : null}
         <Header />
         {children}
         <Footer />
