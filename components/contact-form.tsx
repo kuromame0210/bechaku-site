@@ -450,14 +450,25 @@ export function ContactForm() {
              </div>
            </div>
  
-           <div className="flex flex-wrap justify-end gap-3">
-             <Button type="submit" size="lg">
-               {"確認へ進む"}
-             </Button>
-           </div>
-         </form>
-       ) : (
-         <div className="space-y-6">
+         <div className="flex flex-wrap justify-end gap-3">
+            <Button type="submit" size="lg">
+              {"確認へ進む"}
+            </Button>
+          </div>
+          <div className="sr-only" aria-hidden="true">
+            <Label htmlFor={HONEYPOT_FIELD}>{"会社サイト"}</Label>
+            <Input
+              id={HONEYPOT_FIELD}
+              name={HONEYPOT_FIELD}
+              value={honeypot}
+              onChange={(event) => setHoneypot(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+        </form>
+      ) : (
+        <div className="space-y-6">
            <SummaryRow label="会社名" value={formData.companyName} />
            <SummaryRow label="担当者名" value={formData.contactName} />
            <SummaryRow
@@ -544,14 +555,3 @@ export function ContactForm() {
      </div>
    )
  }
-          <div className="sr-only" aria-hidden="true">
-            <Label htmlFor={HONEYPOT_FIELD}>{"会社サイト"}</Label>
-            <Input
-              id={HONEYPOT_FIELD}
-              name={HONEYPOT_FIELD}
-              value={honeypot}
-              onChange={(event) => setHoneypot(event.target.value)}
-              tabIndex={-1}
-              autoComplete="off"
-            />
-          </div>
