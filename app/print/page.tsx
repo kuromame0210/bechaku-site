@@ -10,7 +10,10 @@ import { Button } from "@/components/ui/button"
 export const metadata: Metadata = {
   title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業株式会社",
   description:
-    "3Dデータをもとに試作品を造形。組付け・干渉確認、形状検討など、設計検討を実物で進められます。",
+    "3Dデータをもとに造形し、組付け確認や形状検討を実物で進められます。",
+  alternates: {
+    canonical: "/print",
+  },
 }
 
 const capabilities = [

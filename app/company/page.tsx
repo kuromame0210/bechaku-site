@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import Script from "next/script"
+import { SITE_NAME, SITE_URL } from "@/lib/site"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import Link from "next/link"
 import { SectionHeading } from "@/components/section-heading"
@@ -9,7 +11,10 @@ import { CTASection } from "@/components/cta-section"
 export const metadata: Metadata = {
   title: "会社案内 | 別役ロボット工業株式会社",
   description:
-    "別役ロボット工業株式会社の会社案内。精密機械分野での実績と、組立・加工・電気配線の一貫対応力をご紹介します。",
+    "別役ロボット工業株式会社の会社案内。精密機械分野の組立・加工・電気配線の一貫対応力をご紹介します。",
+  alternates: {
+    canonical: "/company",
+  },
 }
 
 const aboutText = [
@@ -41,19 +46,19 @@ const strengths = [
     title: "精密機械分野での実績",
     image: "/images/circuit-board-assembly-2.webp",
     description:
-      "半導体製造装置を中心とした精密機械分野において、長年にわたる実務実績があります。",
+      "半導体製造装置をはじめとする精密機械分野において組立てを中心とした業務実績を積み重ねており安心して任せていただけます。",
   },
   {
     title: "総合的な対応力",
     image: "/images/wiring-work.webp",
     description:
-      "組立・加工・電気配線を社内で一貫対応。工程間の調整ロスを抑え、品質と納期の両立を図ります。",
+      "精密機械および工作機械において、組立・加工・電気配線まで一貫して対応可能で発注や調整の負担を軽減できます。",
   },
   {
     title: "実務経験豊富な人材力",
     image: "/images/print-flow-icon.webp",
     description:
-      "現場を熟知したスタッフが在籍しており、技術的な課題に対して的確な判断と柔軟な対応が可能です。",
+      "精密機械分野での実務経験を持つスタッフが在籍しており、現場理解のある体制で任せていただけます。",
   },
 ]
 
@@ -78,8 +83,39 @@ const companyInfo = [
 ]
 
 export default function CompanyPage() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: "+81-495-71-6824",
+        contactType: "customer service",
+        areaServed: "JP",
+        availableLanguage: ["ja"],
+      },
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "児玉町児玉 1732-1",
+      addressLocality: "本庄市",
+      addressRegion: "埼玉県",
+      postalCode: "367-0212",
+      addressCountry: "JP",
+    },
+  }
+
   return (
     <main>
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
+        {JSON.stringify(organizationSchema)}
+      </Script>
       {/* h1 */}
       <section className="bg-card py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6">
@@ -125,24 +161,6 @@ export default function CompanyPage() {
                   sizes="(max-width: 768px) 100vw, 45vw"
                 />
               </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* セクション2：幅広い対応力で... */}
-      <section className="border-t border-border bg-secondary/70 py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-6">
-          <Reveal>
-            <div>
-              <SectionHeading>
-                {"幅広い対応力で貴社の課題解決に貢献します"}
-              </SectionHeading>
-              <p className="mt-3 text-sm text-muted-foreground">
-                {
-                  "精密機械分野での実務経験を活かし、品質と納期の両立を大切にしています。"
-                }
-              </p>
             </div>
           </Reveal>
         </div>

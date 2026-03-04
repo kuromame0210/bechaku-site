@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -6,6 +7,15 @@ import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 import { HeroRotator } from "@/components/hero-rotator"
+
+export const metadata: Metadata = {
+  title: "3Dスキャン・3Dプリント | 別役ロボット工業株式会社（埼玉・関東）",
+  description:
+    "関東・埼玉を中心に3Dスキャン/3Dプリントによるリバースエンジニアリング、試作、部品復元まで対応します。",
+  alternates: {
+    canonical: "/",
+  },
+}
 
 const capabilities = [
   {
@@ -162,8 +172,10 @@ export default function HomePage() {
           <Reveal className="reveal--scroll">
             <p className="leading-loose text-muted-foreground">
               {"図面が残っていない部品、生産中止のパーツ、構造の把握が必要な製品。"}
-              <br/>
+              <br />
               {"こうした課題に対して、3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、一貫した対応が可能です。"}
+              <br />
+              {"埼玉・関東エリアを中心にご相談を承っています。"}
               </p>
           </Reveal>
         </div>

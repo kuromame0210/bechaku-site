@@ -6,7 +6,10 @@ import { Reveal } from "@/components/reveal"
 export const metadata: Metadata = {
   title: "注意事項 | 別役ロボット工業株式会社",
   description:
-    "本サービスをご検討・ご依頼いただく前に、あらかじめご確認いただきたい注意事項をまとめています。",
+    "本サービスをご検討・ご依頼いただく前に、注意事項をまとめています。",
+  alternates: {
+    canonical: "/notice",
+  },
 }
 
 const notices = [

@@ -10,7 +10,10 @@ import { Reveal } from "@/components/reveal"
 export const metadata: Metadata = {
   title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業株式会社",
   description:
-    "現物を精密にスキャンし、形状・構造を3Dデータとして取得。図面がない状態からの技術検討が可能です。",
+    "現物を精密にスキャンし、形状・構造を3Dデータとして取得します。",
+  alternates: {
+    canonical: "/scan",
+  },
 }
 
 const capabilities = [
