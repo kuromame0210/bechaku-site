@@ -60,6 +60,18 @@ export function Footer() {
             >
               {"お問い合わせ"}
             </Link>
+            <Link
+              href="/faq"
+              className="text-sm text-primary-foreground transition-colors hover:text-primary-foreground/80 hover:underline"
+            >
+              {"FAQ"}
+            </Link>
+            <Link
+              href="/notice"
+              className="text-sm text-primary-foreground transition-colors hover:text-primary-foreground/80 hover:underline"
+            >
+              {"注意事項"}
+            </Link>
           </nav>
         </div>
 

@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+import Script from "next/script"
+import { SITE_URL } from "@/lib/site"
 import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 import {
@@ -11,7 +13,10 @@ import {
 export const metadata: Metadata = {
   title: "よくあるご質問（FAQ） | 別役ロボット工業株式会社",
   description:
-    "3Dスキャン・3Dプリントに関するよくあるご質問をまとめています。",
+    "3Dスキャン/3Dプリントに関するよくあるご質問をまとめています。",
+  alternates: {
+    canonical: "/faq",
+  },
 }
 
 const faqItems = [
@@ -75,8 +80,25 @@ const faqItems = [
 ]
 
 export default function FaqPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+    url: `${SITE_URL}/faq`,
+  }
+
   return (
     <main>
+      <Script id="faq-schema" type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </Script>
       {/* Page heading */}
       <section className="bg-card py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-6">
