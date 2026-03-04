@@ -46,6 +46,39 @@ const printerSpecs = [
   "複雑な形状でも細部まで十分な精度で検証可能",
 ]
 
+const materialLineup = [
+  {
+    code: "AR-M2",
+    description: "アクリルベース(少量のウレタン入り)",
+  },
+  {
+    code: "AR-H1",
+    description: "耐熱アクリル樹脂(100～120度ほどの耐熱)",
+  },
+  {
+    code: "AR-G1H",
+    description: "高硬度シリコーンゴム(ショア硬度65℃)",
+  },
+  {
+    code: "AR-G1L",
+    description: "低硬度シリコーンゴム(ショア硬度35℃)",
+  },
+]
+
+const materialPdfs = [
+  {
+    title: "低硬度シリコーンゴム素材のご案内PDF",
+    href: "/pdfs/シリコーンゴム登場.pdf",
+  },
+  {
+    title: "高硬度シリコーンゴム素材のご案内PDF",
+    href: "/pdfs/高硬度シリコーンゴム登場.pdf",
+  },
+  {
+    title: "耐熱アクリル樹脂素材のご案内PDF",
+    href: "/pdfs/耐熱チラシ small.pdf",
+  },
+]
 
 const flowSteps = [
   {
@@ -212,6 +245,58 @@ export default function PrintPage() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* Materials */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading sub="3Dプリントで対応できる材質の一覧です。">
+              {"対応可能な材質"}
+            </SectionHeading>
+          </Reveal>
+          <dl className="mt-8 grid gap-4 border-y border-border py-6 sm:grid-cols-2">
+            {materialLineup.map((material) => (
+              <Reveal key={material.code}>
+                <div className="flex items-start gap-3">
+                  <span className="list-dot mt-2" />
+                  <div>
+                    <dt className="text-sm font-semibold text-muted-foreground">
+                      {material.code}
+                    </dt>
+                    <dd className="text-base font-medium text-foreground">
+                      {material.description}
+                    </dd>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </dl>
+          <Reveal>
+            <div className="mt-8 rounded-2xl border border-border bg-secondary/50 px-6 py-6">
+              <p className="text-sm font-semibold text-foreground">
+                {"資料PDF"}
+              </p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                {materialPdfs.map((pdf) => (
+                  <Button
+                    asChild
+                    key={pdf.href}
+                    className="h-auto w-full justify-center whitespace-normal text-center leading-snug"
+                  >
+                    <Link
+                      href={pdf.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {pdf.title}
+                    </Link>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
