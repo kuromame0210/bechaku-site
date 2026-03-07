@@ -73,7 +73,7 @@ const companyInfo = [
     value: "TEL 0495-71-6824\nFAX 0495-71-6825",
   },
   { label: "代表者", value: "代表取締役社長　石垣 秀一" },
-  { label: "URL", value: "http://www.brinet.co.jp" },
+  { label: "URL", value: "https://bri-reverse.com/" },
   { label: "e-mail", value: "h-betchaku@brinet.co.jp" },
   {
     label: "事業内容",

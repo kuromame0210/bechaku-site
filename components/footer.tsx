@@ -18,7 +18,7 @@ export function Footer() {
               {"FAX: 0495-71-6825"}
             </p>
             <p className="text-primary-foreground">
-              {"URL: http://www.brinet.co.jp"}
+              {"URL: https://bri-reverse.com/"}
             </p>
             <p className="text-primary-foreground">
               {"e-mail: h-betchaku@brinet.co.jp"}

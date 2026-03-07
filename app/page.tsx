@@ -171,11 +171,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="reveal--scroll">
             <p className="leading-loose text-muted-foreground">
-              {"図面が残っていない部品、生産中止のパーツ、構造の把握が必要な製品。"}
+              {"図面がない部品の復元、現物からの3Dデータ化、試作や形状確認のご相談に対応しています。"}
               <br />
-              {"こうした課題に対して、3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、一貫した対応が可能です。"}
-              <br />
-              {"埼玉・関東エリアを中心にご相談を承っています。"}
+              {"3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、内容に応じて一貫して対応可能です。"}
               </p>
           </Reveal>
         </div>
