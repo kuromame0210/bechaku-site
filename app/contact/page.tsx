@@ -6,7 +6,7 @@
 export const metadata: Metadata = {
   title: "お問い合わせ | 別役ロボット工業株式会社",
   description:
-    "関東・埼玉で3Dスキャン/3Dプリントのご相談やご依頼を受け付けています。",
+    "3Dスキャン/3Dプリントのご相談やご依頼を受け付けています。",
   alternates: {
     canonical: "/contact",
   },
@@ -25,9 +25,6 @@ export default function ContactPage() {
               {
                 "ご相談内容を確認のうえ、担当者よりご連絡いたします。内容をご入力ください。"
               }
-            </p>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-              {"埼玉・関東エリアのご相談に対応しています。"}
             </p>
             <div className="mt-6 flex flex-col gap-1 text-sm text-muted-foreground">
               <p className="font-semibold text-foreground">

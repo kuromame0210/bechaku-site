@@ -9,9 +9,9 @@ import { Reveal } from "@/components/reveal"
 import { HeroRotator } from "@/components/hero-rotator"
 
 export const metadata: Metadata = {
-  title: "3Dスキャン・3Dプリント | 別役ロボット工業株式会社（埼玉・関東）",
+  title: "3Dスキャン・3Dプリント | 別役ロボット工業株式会社",
   description:
-    "関東・埼玉を中心に3Dスキャン/3Dプリントによるリバースエンジニアリング、試作、部品復元まで対応します。",
+    "3Dスキャン/3Dプリントによるリバースエンジニアリング、試作、部品復元まで対応します。",
   alternates: {
     canonical: "/",
   },
