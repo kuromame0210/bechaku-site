@@ -9,7 +9,7 @@ export function Footer() {
           <div className="flex flex-col gap-2">
             <p className="font-bold">{"別役ロボット工業株式会社"}</p>
             <p className="text-primary-foreground">
-              {"〒367-0212 埼玉県本庄市児玉町児玉 1732-1"}
+              {"〒367-0212 埼玉県本庄市児玉町児玉 1391-9"}
             </p>
             <p className="text-primary-foreground">
               {"TEL: 0495-71-6824"}

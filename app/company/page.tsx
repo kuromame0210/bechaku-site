@@ -66,7 +66,7 @@ const companyInfo = [
   { label: "会社名", value: "別役ロボット工業株式会社" },
   {
     label: "所在地",
-    value: "〒367-0212 埼玉県本庄市児玉町児玉 1732-1",
+    value: "〒367-0212 埼玉県本庄市児玉町児玉 1391-9",
   },
   {
     label: "連絡先",
@@ -97,14 +97,6 @@ export default function CompanyPage() {
         availableLanguage: ["ja"],
       },
     ],
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "児玉町児玉 1732-1",
-      addressLocality: "本庄市",
-      addressRegion: "埼玉県",
-      postalCode: "367-0212",
-      addressCountry: "JP",
-    },
   }
 
   return (

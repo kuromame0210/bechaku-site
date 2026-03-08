@@ -315,7 +315,7 @@ export function ContactForm() {
               <Input
                 value={formData.address}
                 onChange={updateField("address")}
-                placeholder="例）埼玉県本庄市児玉町児玉 1732-1"
+                placeholder="例）埼玉県本庄市児玉町児玉 1391-9"
                 required
               />
              </div>
