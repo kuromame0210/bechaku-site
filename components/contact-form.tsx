@@ -347,12 +347,13 @@ export function ContactForm() {
              <div className="space-y-3">
                {fileLabels.map((label, index) => {
                  const inputId = `file-${index}`
+                 const hasFile = files[index] !== null
                  return (
                    <div
                      key={inputId}
                      className="flex flex-wrap items-center gap-3 rounded-md border border-input bg-background px-3 py-2"
                    >
-                     <span className="text-sm text-muted-foreground">
+                     <span className="min-w-0 flex-1 truncate text-sm text-muted-foreground">
                        {label}
                      </span>
                      <input
@@ -361,9 +362,25 @@ export function ContactForm() {
                        className="sr-only"
                        onChange={handleFileChange(index)}
                      />
+                     {hasFile && (
+                       <button
+                         type="button"
+                         className="shrink-0 text-sm text-destructive hover:text-destructive/80 hover:underline"
+                         onClick={() => {
+                           const next = [...files]
+                           next[index] = null
+                           setFiles(next)
+                           setFileError("")
+                           const input = document.getElementById(inputId) as HTMLInputElement | null
+                           if (input) input.value = ""
+                         }}
+                       >
+                         {"削除"}
+                       </button>
+                     )}
                       <Label
                         htmlFor={inputId}
-                        className="ml-auto cursor-pointer text-sm text-foreground/70 hover:text-foreground/90 hover:underline"
+                        className="shrink-0 cursor-pointer text-sm text-foreground/70 hover:text-foreground/90 hover:underline"
                       >
                         {"ファイルを選択"}
                       </Label>
