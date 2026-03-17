@@ -86,56 +86,36 @@ const worries = [
     image: "/images/worries-design.webp",
     category: "設計",
     headline: "設計品質UP",
-    badgeClass:
-      "bg-sky-100 text-sky-900 border border-sky-200",
-    borderClass: "border-sky-200/80",
-    hoverClass: "hover:bg-sky-50/60 hover:border-sky-300/80",
     before: "設計の精度に不安があり、最終試作で手戻りが出て困る。",
-    after: "短スパンで造形・評価でき、手戻りを抑えて精度を詰められる。",
+    after: "試作を早い段階から繰り返せるので、最終段階での手戻りを減らせます。",
   },
   {
     image: "/images/worries-prototype.webp",
     category: "試作",
     headline: "期間短縮",
-    badgeClass:
-      "bg-emerald-100 text-emerald-900 border border-emerald-200",
-    borderClass: "border-emerald-200/80",
-    hoverClass: "hover:bg-emerald-50/60 hover:border-emerald-300/80",
     before: "外注試作に時間がかかり、検証のタイミングが遅れて困る。",
-    after: "外観だけでなく機能検証まででき、検証の前倒しができる。",
+    after: "社内で機能検証まで対応できるので、検証のタイミングを前倒しできます。",
   },
   {
     image: "/images/worries-design-process.webp",
     category: "デザイン",
     headline: "意思決定をスムーズに",
-    badgeClass:
-      "bg-amber-100 text-amber-900 border border-amber-200",
-    borderClass: "border-amber-200/80",
-    hoverClass: "hover:bg-amber-50/60 hover:border-amber-300/80",
     before: "アイデアが伝わりにくく、判断が先延ばしになって困る。",
-    after: "すぐに形にできるので、判断材料がそろい意思決定できる。",
+    after: "アイデアをすぐ形にできるので、その場で判断・意思決定が進みます。",
   },
   {
     image: "/images/worries-sales.webp",
     category: "営業",
     headline: "提案力UP",
-    badgeClass:
-      "bg-rose-100 text-rose-900 border border-rose-200",
-    borderClass: "border-rose-200/80",
-    hoverClass: "hover:bg-rose-50/60 hover:border-rose-300/80",
     before: "提案時の説得材料が弱く、相手の反応が薄くて困る。",
-    after: "本格的なモックアップで提案でき、商談の手応えが得られる。",
+    after: "実物に近いモックアップで提案できるので、商談での説得力が高まります。",
   },
   {
     image: "/images/worries-manufacturing.webp",
     category: "製造",
     headline: "コスト削減",
-    badgeClass:
-      "bg-slate-100 text-slate-900 border border-slate-200",
-    borderClass: "border-slate-200/80",
-    hoverClass: "hover:bg-slate-50/60 hover:border-slate-300/80",
     before: "治具を外注しており、コストと納期がネックで困る。",
-    after: "治具の内製化でコストを抑え、急な変更にも対応できる。",
+    after: "治具を内製化できるので、コストも納期も自社でコントロールできます。",
   },
 ]
 export default function HomePage() {
@@ -276,60 +256,46 @@ export default function HomePage() {
       </section>
 
 
-      {/* Worries */}
-      <section className="border-t border-border py-14 md:py-18">
+      {/* Worries — 課題プッシュ型 */}
+      <section className="border-t border-border bg-secondary py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
-          <SectionHeading>{"よくあるお悩みと解決"}</SectionHeading>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            {"課題と解決の関係を、Before/Afterで直感的に把握できます。"}
-          </p>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {worries.map((item) => (
-              <Card
-                key={`${item.category}-${item.headline}`}
-                className={`overflow-hidden border-2 transition-colors ${item.borderClass} ${item.hoverClass}`}
-              >
-                <Reveal className="reveal--scroll">
-                  <div className="hover-sheen relative aspect-[16/9] w-full">
-                    <ImageWithFallback
-                      src={item.image}
-                      alt={item.headline}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 33vw"
-                    />
+          <Reveal className="reveal--scroll">
+            <SectionHeading>{"よくあるお悩みと解決"}</SectionHeading>
+          </Reveal>
+          <Reveal className="reveal--scroll">
+            <p className="mt-3 leading-relaxed text-muted-foreground">
+              {"こんな課題はありませんか？"}
+            </p>
+          </Reveal>
+
+          {/* タイムライン + リスト（PC/SP共通） */}
+          <div className="mt-6 flex flex-col">
+            {worries.map((item, i) => (
+              <Reveal key={item.category} className="reveal--scroll">
+                <div className="flex gap-5">
+                  <div className="flex flex-col items-center">
+                    <span className="relative z-10 mt-1.5 h-3 w-3 shrink-0 rounded-full bg-primary" />
+                    {i < worries.length - 1 && (
+                      <div className="w-px flex-1 bg-border" />
+                    )}
                   </div>
-                </Reveal>
-                <CardContent className="flex flex-col gap-3 p-6">
-                  <div className="flex flex-col gap-2">
-                    <span
-                      className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${item.badgeClass}`}
-                    >
-                      {item.category}
-                    </span>
-                    <h3 className="font-semibold text-foreground">
+                  <div className="pb-8">
+                    <span className="text-base font-bold text-foreground">
                       {item.headline}
-                    </h3>
+                    </span>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground">
+                      <span className="mr-2 inline-block rounded border border-foreground/30 px-1.5 py-0.5 text-xs font-semibold text-foreground">{"課題"}</span>
+                      {item.before}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground">
+                      <span className="mr-2 inline-block rounded bg-primary/15 px-1.5 py-0.5 text-xs font-semibold text-primary">{"解決"}</span>
+                      {item.after}
+                    </p>
                   </div>
-                  <div className="flex flex-col gap-4 text-sm leading-relaxed text-muted-foreground">
-                    <div className="border-t border-border/70 pt-3">
-                      <span className="mb-2 block text-xs font-semibold text-slate-600">
-                        {"Before"}
-                      </span>
-                      <p>{item.before}</p>
-                    </div>
-                    <div className="border-t border-border/70 pt-3">
-                      <span className="mb-2 block text-xs font-semibold text-primary">
-                        {"After"}
-                      </span>
-                      <p>{item.after}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                </div>
+              </Reveal>
             ))}
           </div>
-
         </div>
       </section>
 

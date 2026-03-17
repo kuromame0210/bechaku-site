@@ -9,7 +9,6 @@ const navItems = [
   { label: "3Dスキャン", href: "/scan" },
   { label: "3Dプリント", href: "/print" },
   { label: "会社案内", href: "/company" },
-  { label: "お問い合わせ", href: "/contact" },
 ]
 
 export function Header() {
@@ -31,11 +30,17 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="whitespace-nowrap text-base font-medium text-foreground transition-colors hover:text-primary hover:underline"
+              className="nav-link whitespace-nowrap text-base font-medium text-foreground"
             >
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          >
+            {"お問い合わせ"}
+          </Link>
         </nav>
 
         {/* Mobile toggle */}
@@ -61,13 +66,22 @@ export function Header() {
               <li key={item.label}>
                 <Link
                   href={item.href}
-                  className="block py-2 text-base font-medium text-foreground transition-colors hover:text-primary hover:underline"
+                  className="nav-link block py-2 text-base font-medium text-foreground"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/contact"
+                className="mt-1 block rounded-md bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                onClick={() => setIsOpen(false)}
+              >
+                {"お問い合わせ"}
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
