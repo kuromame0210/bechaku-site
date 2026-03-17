@@ -1,5 +1,6 @@
  import type { Metadata } from "next"
  import { ContactForm } from "@/components/contact-form"
+ import { ContactPageTracker } from "@/components/contact-page-tracker"
  import { Reveal } from "@/components/reveal"
  import { SectionHeading } from "@/components/section-heading"
  
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main>
+      <ContactPageTracker />
       <section className="bg-card py-14 md:py-20">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>

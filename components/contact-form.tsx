@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
+import * as gtag from "@/lib/gtag"
  
 type Step = "input" | "confirm" | "complete"
 
@@ -214,6 +215,10 @@ export function ContactForm() {
       if (!response.ok) {
         throw new Error("send_failed")
       }
+      gtag.event("contact_form_submit", {
+        event_category: "conversion",
+        event_label: "contact_form",
+      })
       setStep("complete")
     } catch (error) {
       if (error instanceof Error) {

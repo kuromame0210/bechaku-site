@@ -6,6 +6,7 @@ import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
+import { Analytics } from "@/components/analytics"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 const notoSansJP = Noto_Sans_JP({
@@ -130,6 +131,7 @@ gtag('config', '${gaId}');`}
             strategy="afterInteractive"
           />
         ) : null}
+        <Analytics />
         <Header />
         {children}
         <Footer />

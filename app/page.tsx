@@ -7,6 +7,7 @@ import { SectionHeading } from "@/components/section-heading"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 import { HeroRotator } from "@/components/hero-rotator"
+import { CTALink } from "@/components/cta-link"
 
 export const metadata: Metadata = {
   title: "3Dスキャン・3Dプリント | 別役ロボット工業株式会社",
@@ -140,7 +141,7 @@ export default function HomePage() {
               size="lg"
               className="min-w-[180px] px-6 text-[1.25rem] md:text-[1.5rem]"
             >
-              <Link href="/contact">{"お問い合わせ"}</Link>
+              <CTALink href="/contact" eventLabel="hero_cta">{"お問い合わせ"}</CTALink>
             </Button>
           </div>
         </div>

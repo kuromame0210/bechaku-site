@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X } from "lucide-react"
+import * as gtag from "@/lib/gtag"
 
 const navItems = [
   { label: "トップ", href: "/" },
@@ -38,6 +39,7 @@ export function Header() {
           <Link
             href="/contact"
             className="rounded-md bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: "header_cta", page_path: typeof window !== "undefined" ? window.location.pathname : "" })}
           >
             {"お問い合わせ"}
           </Link>
@@ -77,7 +79,7 @@ export function Header() {
               <Link
                 href="/contact"
                 className="mt-1 block rounded-md bg-primary px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-                onClick={() => setIsOpen(false)}
+                onClick={() => { gtag.event("cta_click", { event_category: "engagement", event_label: "header_cta_mobile", page_path: typeof window !== "undefined" ? window.location.pathname : "" }); setIsOpen(false) }}
               >
                 {"お問い合わせ"}
               </Link>

@@ -1,6 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "@/components/reveal"
+import * as gtag from "@/lib/gtag"
 
 interface CTASectionProps {
   heading?: string
@@ -22,7 +25,7 @@ export function CTASection({
             {description}
           </p>
           <Button asChild size="lg">
-            <Link href="/contact">{"お問い合わせはこちら"}</Link>
+            <Link href="/contact" onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: "bottom_cta", page_path: typeof window !== "undefined" ? window.location.pathname : "" })}>{"お問い合わせはこちら"}</Link>
           </Button>
           <p className="text-sm text-muted-foreground">
             {"※注意事項をご確認の上、フォームへお進みください。"}
