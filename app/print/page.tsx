@@ -463,6 +463,7 @@ export default function PrintPage() {
       <CTASection
         heading="3Dプリントについてのご相談"
         description="試作・造形の検討段階でもお気軽にご相談ください。目的に合わせた方法をご提案します。"
+        eventLabel="print_page_cta"
       />
     </main>
   )

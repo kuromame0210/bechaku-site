@@ -466,6 +466,7 @@ export default function ScanPage() {
       <CTASection
         heading="3Dスキャンについてのご相談"
         description="図面がない部品や形状把握が必要な場合、まずはお気軽にご相談ください。"
+        eventLabel="scan_page_cta"
       />
     </main>
   )

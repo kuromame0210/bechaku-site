@@ -8,11 +8,13 @@ import * as gtag from "@/lib/gtag"
 interface CTASectionProps {
   heading?: string
   description?: string
+  eventLabel?: string
 }
 
 export function CTASection({
   heading = "お問い合わせ",
   description = "技術的な可否判断を含めたご相談を承ります。まずはお気軽にご連絡ください。",
+  eventLabel = "bottom_cta",
 }: CTASectionProps) {
   return (
     <section id="contact" className="border-t border-border bg-card py-16 md:py-20">
@@ -25,7 +27,7 @@ export function CTASection({
             {description}
           </p>
           <Button asChild size="lg">
-            <Link href="/contact" onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: "bottom_cta", page_path: typeof window !== "undefined" ? window.location.pathname : "" })}>{"お問い合わせはこちら"}</Link>
+            <Link href="/contact" onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: eventLabel, page_path: typeof window !== "undefined" ? window.location.pathname : "" })}>{"お問い合わせはこちら"}</Link>
           </Button>
           <p className="text-sm text-muted-foreground">
             {"※注意事項をご確認の上、フォームへお進みください。"}

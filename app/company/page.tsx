@@ -282,6 +282,7 @@ export default function CompanyPage() {
       <CTASection
         heading="お問い合わせ"
         description="技術的なご相談やお見積りのご依頼など、お気軽にご連絡ください。"
+        eventLabel="company_page_cta"
       />
     </main>
   )
