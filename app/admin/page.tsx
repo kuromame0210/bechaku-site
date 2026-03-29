@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
+import Markdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 type SummaryData = {
   users: number
@@ -395,8 +397,34 @@ function ReportsSection() {
             {loadingReport ? (
               <p className="text-muted-foreground">読み込み中...</p>
             ) : (
-              <div className="prose prose-sm max-w-none rounded-md border border-border bg-white p-6 dark:prose-invert">
-                <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-foreground">{content}</pre>
+              <div className="rounded-md border border-border bg-white p-6">
+                <Markdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    h1: ({ children }) => <h1 className="mb-4 text-xl font-bold text-foreground">{children}</h1>,
+                    h2: ({ children }) => <h2 className="mb-3 mt-6 border-b border-border pb-2 text-lg font-semibold text-foreground">{children}</h2>,
+                    h3: ({ children }) => <h3 className="mb-2 mt-4 text-base font-semibold text-foreground">{children}</h3>,
+                    p: ({ children }) => <p className="mb-3 text-sm leading-relaxed text-foreground">{children}</p>,
+                    ul: ({ children }) => <ul className="mb-3 ml-4 list-disc text-sm text-foreground">{children}</ul>,
+                    ol: ({ children }) => <ol className="mb-3 ml-4 list-decimal text-sm text-foreground">{children}</ol>,
+                    li: ({ children }) => <li className="mb-1 leading-relaxed">{children}</li>,
+                    strong: ({ children }) => <strong className="font-semibold text-foreground">{children}</strong>,
+                    hr: () => <hr className="my-6 border-border" />,
+                    table: ({ children }) => (
+                      <div className="mb-4 overflow-x-auto">
+                        <table className="w-full text-sm">{children}</table>
+                      </div>
+                    ),
+                    thead: ({ children }) => <thead className="border-b border-border">{children}</thead>,
+                    th: ({ children }) => <th className="pb-2 pr-4 text-left text-xs font-semibold text-muted-foreground">{children}</th>,
+                    td: ({ children }) => <td className="border-b border-border/50 py-2 pr-4 text-sm">{children}</td>,
+                    input: ({ checked, ...props }) => (
+                      <input type="checkbox" checked={checked} readOnly className="mr-2" {...props} />
+                    ),
+                  }}
+                >
+                  {content}
+                </Markdown>
               </div>
             )}
           </div>

@@ -63,9 +63,9 @@ const strengths = [
 ]
 
 const COMPANY_ADDRESS = "埼玉県本庄市児玉町児玉1391-9"
-const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_ADDRESS)}`
+const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/6Y39VFYCLzLxiiJy6"
 
-const companyInfo: Array<{ label: string; value: string; render?: "address" | "tel" | "email" | "url" }> = [
+const companyInfo: Array<{ label: string; value: string; render?: "address" | "tel" | "email" }> = [
   { label: "会社名", value: "別役ロボット工業株式会社" },
   {
     label: "所在地",
@@ -78,7 +78,6 @@ const companyInfo: Array<{ label: string; value: string; render?: "address" | "t
     render: "tel",
   },
   { label: "代表者", value: "代表取締役社長　石垣 秀一" },
-  { label: "URL", value: "https://bri-reverse.com/", render: "url" },
   { label: "e-mail", value: "h-betchaku@brinet.co.jp", render: "email" },
   {
     label: "事業内容",
@@ -294,13 +293,6 @@ export default function CompanyPage() {
                           {"\n"}
                           {"FAX 0495-71-6825"}
                         </span>
-                      ) : row.render === "url" ? (
-                        <a
-                          href={row.value}
-                          className="text-primary/80 underline underline-offset-2 hover:text-primary"
-                        >
-                          {row.value}
-                        </a>
                       ) : (
                         row.value
                       )}
@@ -334,7 +326,7 @@ export default function CompanyPage() {
           <Reveal>
             <div className="mt-8 overflow-hidden border border-border/70">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.5!2d139.1538!3d36.1891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601ee5e1d6b3e5e1%3A0x0!2z5Z-8546J55yM5pys5bqE5biC5YWQ55OU55S65YWQ55OU!5e0!3m2!1sja!2sjp!4v1"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.0!2d139.1432187!3d36.1885477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601ec3b864419ca7%3A0x8f1843bb543c805f!2z5Yil5b255Ot44Oc44OD44OI5bel5qWt5qCq5byP5Lya56S-!5e0!3m2!1sja!2sjp!4v1"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}

@@ -12,16 +12,19 @@ export function Footer() {
               {"〒367-0212 埼玉県本庄市児玉町児玉 1391-9"}
             </p>
             <p className="text-primary-foreground">
-              {"TEL: 0495-71-6824"}
+              {"TEL: "}
+              <a href="tel:0495-71-6824" className="underline underline-offset-2 hover:text-primary-foreground/80">
+                {"0495-71-6824"}
+              </a>
             </p>
             <p className="text-primary-foreground">
               {"FAX: 0495-71-6825"}
             </p>
             <p className="text-primary-foreground">
-              {"URL: https://bri-reverse.com/"}
-            </p>
-            <p className="text-primary-foreground">
-              {"e-mail: h-betchaku@brinet.co.jp"}
+              {"e-mail: "}
+              <a href="mailto:h-betchaku@brinet.co.jp" className="underline underline-offset-2 hover:text-primary-foreground/80">
+                {"h-betchaku@brinet.co.jp"}
+              </a>
             </p>
           </div>
 
