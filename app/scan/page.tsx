@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import { Card, CardContent } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
@@ -6,11 +7,18 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
+import { SITE_URL } from "@/lib/site"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "3Dスキャン（実物→3Dデータ化） | 別役ロボット工業株式会社",
+  title: "3Dスキャンで図面なし部品をデータ化｜リバースエンジニアリング｜別役ロボット工業",
   description:
-    "現物を精密にスキャンし、形状・構造を3Dデータとして取得します。",
+    "図面がない部品も現物から3Dデータ化。製造中止品や旧型パーツの形状を精密に計測し、STL・STEP等のCADデータを作成。復元・試作・干渉確認に対応。",
   alternates: {
     canonical: "/scan",
   },
@@ -103,12 +111,36 @@ const flowSteps = [
   },
 ]
 
-const faqHighlights = [
-  "図面やCADデータがなくても相談できますか？",
-  "古くて破損している部品でも復元できますか？",
-  "どのくらいの大きさまで対応できますか？",
-  "納期はどのくらいかかりますか？",
-  "費用はどのくらいかかりますか？",
+const scanFaqItems = [
+  {
+    id: "scan-faq-1",
+    question: "図面やCADデータがなくても相談できますか？",
+    answer:
+      "はい、可能です。\n現物を3Dスキャンし、形状・寸法を取得することで、\n設計や検討に使用できる3Dデータを作成します。\n図面がない、または古くて信用できない場合でも対応しています。",
+  },
+  {
+    id: "scan-faq-2",
+    question: "古くて破損している部品でも復元できますか？",
+    answer:
+      "元の形状が残っていれば大丈夫です。\n欠けや摩耗がある場合でも、用途を伺った上で再設計・補正を行います。",
+  },
+  {
+    id: "scan-faq-3",
+    question: "どのくらいの大きさまで対応できますか？",
+    answer:
+      "おおよそ1000mm程度まで対応可能です。\nそれ以上のサイズについては、分割対応などを含めて個別にご相談ください。",
+  },
+  {
+    id: "scan-faq-4",
+    question: "作成する3Dデータの形式は何ですか？",
+    answer: "STL形式での提供となります。",
+  },
+  {
+    id: "scan-faq-5",
+    question: "納期はどのくらいかかりますか？",
+    answer:
+      "対象物の大きさ・形状・内容によって異なります。\nお見積り時に、想定スケジュールをご案内します。",
+  },
 ]
 
 const noticeSummary = [
@@ -118,8 +150,42 @@ const noticeSummary = [
 ]
 
 export default function ScanPage() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "3Dスキャン（リバースエンジニアリング）",
+    description:
+      "図面がない部品も現物から3Dデータ化。製造中止品や旧型パーツの形状を精密に計測し、CADデータを作成。",
+    provider: {
+      "@type": "Organization",
+      name: "別役ロボット工業株式会社",
+      url: SITE_URL,
+    },
+    areaServed: "JP",
+    serviceType: "リバースエンジニアリング",
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: scanFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  }
+
   return (
     <main>
+      <Script id="scan-service-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(serviceSchema)}
+      </Script>
+      <Script id="scan-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(faqSchema)}
+      </Script>
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <ImageWithFallback
@@ -424,40 +490,38 @@ export default function ScanPage() {
           <Reveal>
             <SectionHeading>{"よくあるご質問"}</SectionHeading>
           </Reveal>
-          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
-            <Reveal className="md:order-2">
-              <div className="overflow-hidden rounded-2xl">
-                <div className="relative aspect-[16/9] w-full">
-                  <ImageWithFallback
-                    src="/images/output-restoration.webp"
-                    alt="部品の復元イメージ"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                  />
-                </div>
-              </div>
-            </Reveal>
-            <Reveal className="md:order-1">
-              <ul className="flex flex-col gap-3">
-                {faqHighlights.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-                  >
-                    <span className="list-dot" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/faq"
-                className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
-              >
-                {"FAQを詳しく見る"}
-              </Link>
-            </Reveal>
-          </div>
+          <Reveal>
+            <Accordion type="multiple" className="mt-6 w-full">
+              {scanFaqItems.map((item) => (
+                <AccordionItem
+                  key={item.id}
+                  value={item.id}
+                  className="border-border"
+                >
+                  <AccordionTrigger className="gap-4 py-5 text-left text-base font-semibold text-foreground hover:no-underline hover:text-primary">
+                    <span>
+                      {"Q. "}
+                      {item.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6 pt-0 text-base leading-loose text-muted-foreground">
+                    {item.answer.split("\n").map((line, i) => (
+                      <span key={`${item.id}-line-${i}`}>
+                        {line}
+                        {i < item.answer.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <Link
+              href="/faq"
+              className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
+            >
+              {"その他のFAQを見る"}
+            </Link>
+          </Reveal>
         </div>
       </section>
 

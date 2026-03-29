@@ -7,7 +7,7 @@
 export const metadata: Metadata = {
   title: "お問い合わせ | 別役ロボット工業株式会社",
   description:
-    "3Dスキャン/3Dプリントのご相談やご依頼を受け付けています。",
+    "リバースエンジニアリング・3Dスキャン・3Dプリントのご相談はこちら。図面がない部品の復元・試作など、技術的な可否判断からお気軽にどうぞ。",
   alternates: {
     canonical: "/contact",
   },

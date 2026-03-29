@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "よくあるご質問（FAQ） | 別役ロボット工業株式会社",
+  title: "よくあるご質問｜図面なし・費用・納期・対応範囲｜別役ロボット工業",
   description:
-    "3Dスキャン/3Dプリントに関するよくあるご質問をまとめています。",
+    "図面やCADデータがなくても対応できるか、費用・納期はどのくらいか、破損した部品でも復元できるか等、リバースエンジニアリングに関するよくあるご質問。",
   alternates: {
     canonical: "/faq",
   },

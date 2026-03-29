@@ -7,6 +7,7 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Analytics } from "@/components/analytics"
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next"
 import { SITE_NAME, SITE_URL } from "@/lib/site"
 
 const notoSansJP = Noto_Sans_JP({
@@ -23,17 +24,17 @@ const notoSerifJP = Noto_Serif_JP({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: `${SITE_NAME} | 3Dスキャン・3Dプリント`,
+  title: `${SITE_NAME} | リバースエンジニアリング・3Dスキャン・3Dプリント`,
   description:
-    "実物から、解析・データ化・復元・試作まで。3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がなくても、現物があれば技術的に成立するかを判断し、形にします。",
+    "図面がなくても現物から対応。3Dスキャンで実物をデータ化し、3Dプリントで復元・試作まで。製造中止部品の復元、旧パーツの再現など、現物があればまずご相談ください。",
   openGraph: {
     type: "website",
     locale: "ja_JP",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | 3Dスキャン・3Dプリント`,
+    title: `${SITE_NAME} | リバースエンジニアリング・3Dスキャン・3Dプリント`,
     description:
-      "実物から、解析・データ化・復元・試作まで。3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がなくても、現物があれば技術的に成立するかを判断し、形にします。",
+      "図面がなくても現物から対応。3Dスキャンで実物をデータ化し、3Dプリントで復元・試作まで。製造中止部品の復元、旧パーツの再現など、現物があればまずご相談ください。",
     images: [
       {
         url: "/images/og-default.jpg",
@@ -44,9 +45,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} | 3Dスキャン・3Dプリント`,
+    title: `${SITE_NAME} | リバースエンジニアリング・3Dスキャン・3Dプリント`,
     description:
-      "実物から、解析・データ化・復元・試作まで。3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がなくても、現物があれば技術的に成立するかを判断し、形にします。",
+      "図面がなくても現物から対応。3Dスキャンで実物をデータ化し、3Dプリントで復元・試作まで。製造中止部品の復元、旧パーツの再現など、現物があればまずご相談ください。",
     images: [
       {
         url: "/images/og-default.jpg",
@@ -132,6 +133,7 @@ gtag('config', '${gaId}');`}
           />
         ) : null}
         <Analytics />
+        <VercelAnalytics />
         <Header />
         {children}
         <Footer />

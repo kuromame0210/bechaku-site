@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -8,11 +9,12 @@ import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 import { HeroRotator } from "@/components/hero-rotator"
 import { CTALink } from "@/components/cta-link"
+import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "3Dスキャン・3Dプリント | 別役ロボット工業株式会社",
+  title: "リバースエンジニアリング｜図面なしでも部品復元・試作対応｜別役ロボット工業",
   description:
-    "3Dスキャン/3Dプリントによるリバースエンジニアリング、試作、部品復元まで対応します。",
+    "図面がなくても現物から対応。3Dスキャンで実物をデータ化し、3Dプリントで復元・試作まで。製造中止部品の復元、旧パーツの再現など、現物があればまずご相談ください。",
   alternates: {
     canonical: "/",
   },
@@ -120,8 +122,36 @@ const worries = [
   },
 ]
 export default function HomePage() {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: "別役ロボット工業株式会社",
+    url: SITE_URL,
+    telephone: "+81-495-71-6824",
+    email: "h-betchaku@brinet.co.jp",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "児玉町児玉1391-9",
+      addressLocality: "本庄市",
+      addressRegion: "埼玉県",
+      postalCode: "367-0212",
+      addressCountry: "JP",
+    },
+    description:
+      "3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がない部品の復元・試作に対応。",
+    areaServed: "JP",
+    knowsLanguage: "ja",
+  }
+
   return (
     <main>
+      <Script
+        id="local-business-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+      >
+        {JSON.stringify(localBusinessSchema)}
+      </Script>
       {/* Hero */}
       <section className="relative min-h-[420px] overflow-hidden py-16 md:min-h-[560px] md:py-24 lg:min-h-[640px]">
         <HeroRotator intervalMs={5000} />

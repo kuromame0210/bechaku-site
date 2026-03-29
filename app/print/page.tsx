@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import { ImageWithFallback } from "@/components/image-with-fallback"
 import { Card, CardContent } from "@/components/ui/card"
 import { SectionHeading } from "@/components/section-heading"
@@ -6,11 +7,18 @@ import Link from "next/link"
 import { CTASection } from "@/components/cta-section"
 import { Reveal } from "@/components/reveal"
 import { Button } from "@/components/ui/button"
+import { SITE_URL } from "@/lib/site"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "3Dプリント（3Dデータ→造形・試作） | 別役ロボット工業株式会社",
+  title: "3Dプリントで部品復元・試作造形｜製造中止品の再現にも対応｜別役ロボット工業",
   description:
-    "3Dデータをもとに造形し、組付け確認や形状検討を実物で進められます。",
+    "3Dスキャンデータから部品を復元・試作造形。組付け確認や形状検討にも対応。アクリル樹脂・耐熱樹脂・シリコーンゴム等の多素材対応。図面なしでもスキャンからワンストップで。",
   alternates: {
     canonical: "/print",
   },
@@ -113,12 +121,36 @@ const flowSteps = [
   },
 ]
 
-const faqHighlights = [
-  "図面やCADデータがなくても相談できますか？",
-  "古くて破損している部品でも復元できますか？",
-  "どのくらいの大きさまで対応できますか？",
-  "納期はどのくらいかかりますか？",
-  "費用はどのくらいかかりますか？",
+const printFaqItems = [
+  {
+    id: "print-faq-1",
+    question: "どのくらいの大きさまで対応できますか？",
+    answer:
+      "おおよそ1000mm程度まで対応可能です。\nそれ以上のサイズについては、分割対応などを含めて個別にご相談ください。",
+  },
+  {
+    id: "print-faq-2",
+    question: "造形できる素材にはどのようなものがありますか？",
+    answer: "樹脂やシリコンなどに対応しています。",
+  },
+  {
+    id: "print-faq-3",
+    question: "造形ではどのようなものが作れますか？",
+    answer:
+      "部品・試作品・検証用モデルなど、\n形状確認や機能検討を目的とした造形に対応しています。\n用途や条件によって対応可否が異なるため、\nまずは目的をお聞かせください。",
+  },
+  {
+    id: "print-faq-4",
+    question: "納期はどのくらいかかりますか？",
+    answer:
+      "対象物の大きさ・形状・内容によって異なります。\nお見積り時に、想定スケジュールをご案内します。",
+  },
+  {
+    id: "print-faq-5",
+    question: "費用はどのくらいかかりますか？",
+    answer:
+      "大きさ・形状・素材・作業内容によって異なります。\nご相談内容を確認した上で、都度お見積りいたします。",
+  },
 ]
 
 const noticeSummary = [
@@ -128,8 +160,42 @@ const noticeSummary = [
 ]
 
 export default function PrintPage() {
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "3Dプリント（部品復元・試作造形）",
+    description:
+      "3Dスキャンデータから部品を復元・試作造形。組付け確認や形状検討にも対応。アクリル樹脂・耐熱樹脂・シリコーンゴム等の多素材対応。",
+    provider: {
+      "@type": "Organization",
+      name: "別役ロボット工業株式会社",
+      url: SITE_URL,
+    },
+    areaServed: "JP",
+    serviceType: "3Dプリント・試作造形",
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: printFaqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  }
+
   return (
     <main>
+      <Script id="print-service-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(serviceSchema)}
+      </Script>
+      <Script id="print-faq-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(faqSchema)}
+      </Script>
       {/* Page header */}
       <section className="relative overflow-hidden py-14 md:py-20">
         <ImageWithFallback
@@ -379,40 +445,38 @@ export default function PrintPage() {
           <Reveal>
             <SectionHeading>{"よくあるご質問"}</SectionHeading>
           </Reveal>
-          <div className="mt-6 grid gap-8 md:gap-14 md:grid-cols-2 md:items-center">
-            <Reveal className="md:order-2">
-              <div className="overflow-hidden rounded-2xl">
-                <div className="relative aspect-[16/9] w-full">
-                  <ImageWithFallback
-                    src="/images/output-restoration.webp"
-                    alt="部品の復元イメージ"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 45vw"
-                  />
-                </div>
-              </div>
-            </Reveal>
-            <Reveal className="md:order-1">
-              <ul className="flex flex-col gap-3">
-                {faqHighlights.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-foreground"
-                  >
-                    <span className="list-dot" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href="/faq"
-                className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
-              >
-                {"FAQを詳しく見る"}
-              </Link>
-            </Reveal>
-          </div>
+          <Reveal>
+            <Accordion type="multiple" className="mt-6 w-full">
+              {printFaqItems.map((item) => (
+                <AccordionItem
+                  key={item.id}
+                  value={item.id}
+                  className="border-border"
+                >
+                  <AccordionTrigger className="gap-4 py-5 text-left text-base font-semibold text-foreground hover:no-underline hover:text-primary">
+                    <span>
+                      {"Q. "}
+                      {item.question}
+                    </span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6 pt-0 text-base leading-loose text-muted-foreground">
+                    {item.answer.split("\n").map((line, i) => (
+                      <span key={`${item.id}-line-${i}`}>
+                        {line}
+                        {i < item.answer.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <Link
+              href="/faq"
+              className="mt-6 inline-flex text-sm font-medium text-foreground/70 transition-colors hover:text-foreground/90 hover:underline"
+            >
+              {"その他のFAQを見る"}
+            </Link>
+          </Reveal>
         </div>
       </section>
 

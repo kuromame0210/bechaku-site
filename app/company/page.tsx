@@ -9,9 +9,9 @@ import { Reveal } from "@/components/reveal"
 import { CTASection } from "@/components/cta-section"
 
 export const metadata: Metadata = {
-  title: "会社案内 | 別役ロボット工業株式会社",
+  title: "会社案内｜リバースエンジニアリング・精密機械組立｜別役ロボット工業",
   description:
-    "別役ロボット工業株式会社の会社案内。精密機械分野の組立・加工・電気配線の一貫対応力をご紹介します。",
+    "埼玉県本庄市の別役ロボット工業。精密機械分野の組立・加工の実績をもとに、3Dスキャン・3Dプリントによるリバースエンジニアリング・部品復元に対応しています。",
   alternates: {
     canonical: "/company",
   },
@@ -62,19 +62,24 @@ const strengths = [
   },
 ]
 
-const companyInfo = [
+const COMPANY_ADDRESS = "埼玉県本庄市児玉町児玉1391-9"
+const GOOGLE_MAPS_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_ADDRESS)}`
+
+const companyInfo: Array<{ label: string; value: string; render?: "address" | "tel" | "email" | "url" }> = [
   { label: "会社名", value: "別役ロボット工業株式会社" },
   {
     label: "所在地",
-    value: "〒367-0212 埼玉県本庄市児玉町児玉 1391-9",
+    value: `〒367-0212 ${COMPANY_ADDRESS}`,
+    render: "address",
   },
   {
     label: "連絡先",
     value: "TEL 0495-71-6824\nFAX 0495-71-6825",
+    render: "tel",
   },
   { label: "代表者", value: "代表取締役社長　石垣 秀一" },
-  { label: "URL", value: "https://bri-reverse.com/" },
-  { label: "e-mail", value: "h-betchaku@brinet.co.jp" },
+  { label: "URL", value: "https://bri-reverse.com/", render: "url" },
+  { label: "e-mail", value: "h-betchaku@brinet.co.jp", render: "email" },
   {
     label: "事業内容",
     value:
@@ -259,7 +264,46 @@ export default function CompanyPage() {
                       {row.label}
                     </dt>
                     <dd className="whitespace-pre-line text-sm leading-relaxed text-foreground">
-                      {row.value}
+                      {row.render === "address" ? (
+                        <span className="flex flex-wrap items-center gap-3">
+                          <span>{row.value}</span>
+                          <a
+                            href={GOOGLE_MAPS_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/5 px-3 py-1 text-xs font-medium text-primary hover:bg-primary/10"
+                          >
+                            {"Googleマップで開く ↗"}
+                          </a>
+                        </span>
+                      ) : row.render === "email" ? (
+                        <a
+                          href={`mailto:${row.value}`}
+                          className="text-primary/80 underline underline-offset-2 hover:text-primary"
+                        >
+                          {row.value}
+                        </a>
+                      ) : row.render === "tel" ? (
+                        <span>
+                          <a
+                            href="tel:0495-71-6824"
+                            className="text-primary/80 underline underline-offset-2 hover:text-primary"
+                          >
+                            {"TEL 0495-71-6824"}
+                          </a>
+                          {"\n"}
+                          {"FAX 0495-71-6825"}
+                        </span>
+                      ) : row.render === "url" ? (
+                        <a
+                          href={row.value}
+                          className="text-primary/80 underline underline-offset-2 hover:text-primary"
+                        >
+                          {row.value}
+                        </a>
+                      ) : (
+                        row.value
+                      )}
                     </dd>
                   </div>
                 ))}
@@ -274,6 +318,67 @@ export default function CompanyPage() {
                 {"会社案内PDFを見る"}
               </Link>
             </Button>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* セクション6：アクセス */}
+      <section className="border-t border-border bg-white py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-6 w-1 bg-primary/80" />
+              <SectionHeading>{"アクセス"}</SectionHeading>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="mt-8 overflow-hidden border border-border/70">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.5!2d139.1538!3d36.1891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601ee5e1d6b3e5e1%3A0x0!2z5Z-8546J55yM5pys5bqE5biC5YWQ55OU55S65YWQ55OU!5e0!3m2!1sja!2sjp!4v1"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="別役ロボット工業株式会社の所在地"
+              />
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              {"〒367-0212 埼玉県本庄市児玉町児玉 1391-9"}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* セクション7：その他事業 */}
+      <section className="border-t border-border bg-secondary/70 py-16 md:py-20">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-6 w-1 bg-primary/80" />
+              <SectionHeading>{"その他事業"}</SectionHeading>
+            </div>
+          </Reveal>
+          <Reveal>
+            <div className="mt-8 border border-border/70 bg-white p-6 md:p-8">
+              <h3 className="text-base font-semibold text-foreground">
+                {"防犯カメラ事業"}
+              </h3>
+              <p className="mt-3 leading-relaxed text-muted-foreground">
+                {"工場・製造現場向けの防犯カメラの販売・設置工事を行っています。粉塵や油煙など過酷な環境に対応した機種選定から、現場のヒアリングに基づいた最適な設置プランのご提案まで対応。2,000種類以上のカメラから用途に合わせたフルカスタマイズが可能です。"}
+              </p>
+              <ul className="mt-4 flex flex-wrap gap-3">
+                {["販売", "設置工事", "輸入・OEM", "フルカスタマイズ対応"].map((tag) => (
+                  <li
+                    key={tag}
+                    className="rounded-md border border-border/60 bg-secondary/50 px-3 py-1 text-xs font-medium text-muted-foreground"
+                  >
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
       </section>
