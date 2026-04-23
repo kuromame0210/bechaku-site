@@ -200,7 +200,7 @@ export default function ScanPage() {
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div className="flex flex-col gap-6">
                 <SectionHeading tag="h1">
-                  {"実物から3Dデータ化 \n（3Dスキャン）"}
+                  {"実物から3Dデータ化 "}
                 </SectionHeading>
                 <p className="max-w-2xl leading-relaxed text-foreground">
                   {"現物があれば、図面がなくても3Dデータ化が可能です。"}

@@ -210,7 +210,7 @@ export default function PrintPage() {
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div className="flex flex-col gap-6">
                 <SectionHeading tag="h1">
-                  {"3Dデータから造形・試作（3Dプリント）"}
+                  {"3Dデータから造形・試作"}
                 </SectionHeading>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild size="lg">
