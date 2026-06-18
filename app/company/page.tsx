@@ -63,7 +63,8 @@ const strengths = [
 ]
 
 const COMPANY_ADDRESS = "埼玉県本庄市児玉町児玉1391-9"
-const GOOGLE_MAPS_URL = "https://maps.app.goo.gl/6Y39VFYCLzLxiiJy6"
+const GOOGLE_MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=%E5%88%A5%E5%BD%B9%E3%83%AD%E3%83%9C%E3%83%83%E3%83%88%E5%B7%A5%E6%A5%AD%E6%A0%AA%E5%BC%8F%E4%BC%9A%E7%A4%BE%20%E3%80%92367-0212%20%E5%9F%BC%E7%8E%89%E7%9C%8C%E6%9C%AC%E5%BA%84%E5%B8%82%E5%85%90%E7%8E%89%E7%94%BA%E5%85%90%E7%8E%891391-9"
 
 const companyInfo: Array<{ label: string; value: string; render?: "address" | "tel" | "email" }> = [
   { label: "会社名", value: "別役ロボット工業株式会社" },
