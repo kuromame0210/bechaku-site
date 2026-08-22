@@ -1,7 +1,7 @@
 ---
 title: "製造中止になった部品、どうする？4つの解決策を比較"
 description: "メーカーが生産終了した部品の調達方法を4つ紹介。代替品探し・中古品・リバースエンジニアリング・設計変更を比較し、最適な選択肢を解説します。"
-date: "2026-04-30"
+date: "2026-08-22"
 image: "/images/output-restoration.webp"
 faq:
   - question: "図面がなくても部品を復元できますか？"
@@ -136,4 +136,4 @@ faq:
 ### 関連記事
 
 - [図面がない部品を作る方法｜現物から復元できるか確認する流れ](/blog/no-drawing-parts-manufacturing)
-- [壊れた設備部品を3Dプリントで復元｜素材・精度をプロが解説](/blog/broken-parts-3d-print-restoration)
+- [壊れた設備部品を3Dプリントで復元できるか｜素材・精度の確認ポイント](/blog/broken-parts-3d-print-restoration)
