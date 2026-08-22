@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "3Dプリントで部品復元・試作造形｜製造中止品の再現にも対応｜別役ロボット工業",
+  title: "壊れた部品・製造中止部品を3Dプリントで復元｜1個から相談｜別役ロボット工業",
   description:
-    "3Dスキャンデータから部品を復元・試作造形。組付け確認や形状検討にも対応。アクリル樹脂・耐熱樹脂・シリコーンゴム等の多素材対応。図面なしでもスキャンからワンストップで。",
+    "壊れた設備部品や製造中止部品を、3Dスキャンデータから3Dプリントで復元・試作できるか確認。図面なし・現物のみの部品も1個からご相談いただけます。",
   alternates: {
     canonical: "/print",
   },
@@ -40,18 +40,39 @@ const capabilities = [
 ]
 
 const useCases = [
+  "壊れた設備部品を1個だけ復元できるか相談したい",
+  "製造中止・廃番部品の代替を検討したい",
+  "図面がない部品を現物から作れるか確認したい",
   "図面だけでは判断しにくい",
   "組付けや干渉を実物でチェックしたい",
   "関係者と実物を見ながら検討したい",
   "量産前にリスクを減らしたい",
 ]
 
+const restorationPoints = [
+  {
+    title: "壊れた部品の復元相談",
+    description:
+      "欠け・摩耗がある部品でも、残っている形状と用途を確認し、復元できるか判断します。",
+  },
+  {
+    title: "製造中止・廃番部品に対応",
+    description:
+      "メーカー在庫がない部品や古い設備部品も、現物からデータ化して試作・復元できるか確認します。",
+  },
+  {
+    title: "1個から小ロットで検討",
+    description:
+      "量産前の確認、予備部品、現場用治具など、1個だけ必要なケースでもご相談いただけます。",
+  },
+]
+
 const printerSpecs = [
-  "割れにくいアクリル樹脂/シリコンゴムで造形可能",
-  "耐水性・透明性・靭性のある造形材料を使用可能",
-  "造形材料は15-30μmの積層ピッチで造形",
-  "1/100mmオーダーの高精度",
-  "複雑な形状でも細部まで十分な精度で検証可能",
+  "アクリル樹脂/シリコーンゴムでの造形を検討可能",
+  "耐水性・透明性・靭性のある造形材料を用途に応じて検討",
+  "造形材料は15-30μmの積層ピッチが目安",
+  "1/100mmオーダーの精度目安",
+  "複雑な形状も、用途・条件に応じて検証可能",
 ]
 
 const materialLineup = [
@@ -126,18 +147,18 @@ const printFaqItems = [
     id: "print-faq-1",
     question: "どのくらいの大きさまで対応できますか？",
     answer:
-      "おおよそ1000mm程度まで対応可能です。\nそれ以上のサイズについては、分割対応などを含めて個別にご相談ください。",
+      "おおよそ1000mm程度までが目安です。\nただし、形状・重量・材質・必要精度によって異なるため、個別に確認します。",
   },
   {
     id: "print-faq-2",
     question: "造形できる素材にはどのようなものがありますか？",
-    answer: "樹脂やシリコンなどに対応しています。",
+    answer: "樹脂やシリコーンなどを扱っています。実際に使えるかは用途・荷重・使用環境を確認して判断します。",
   },
   {
     id: "print-faq-3",
     question: "造形ではどのようなものが作れますか？",
     answer:
-      "部品・試作品・検証用モデルなど、\n形状確認や機能検討を目的とした造形に対応しています。\n用途や条件によって対応可否が異なるため、\nまずは目的をお聞かせください。",
+      "部品・試作品・検証用モデルなど、\n形状確認や機能検討を目的とした造形をご相談いただけます。\n用途や条件によって対応可否が異なるため、\nまずは目的をお聞かせください。",
   },
   {
     id: "print-faq-4",
@@ -165,7 +186,7 @@ export default function PrintPage() {
     "@type": "Service",
     name: "3Dプリント（部品復元・試作造形）",
     description:
-      "3Dスキャンデータから部品を復元・試作造形。組付け確認や形状検討にも対応。アクリル樹脂・耐熱樹脂・シリコーンゴム等の多素材対応。",
+      "壊れた設備部品や製造中止部品を、3Dスキャンデータから3Dプリントで復元・試作造形できるか確認。図面なし・現物のみの部品も1個から相談可能。",
     provider: {
       "@type": "Organization",
       name: "別役ロボット工業株式会社",
@@ -210,8 +231,11 @@ export default function PrintPage() {
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div className="flex flex-col gap-6">
                 <SectionHeading tag="h1">
-                  {"3Dデータから造形・試作"}
+                  {"壊れた部品・製造中止部品を3Dプリントで復元できるか確認"}
                 </SectionHeading>
+                <p className="max-w-2xl leading-relaxed text-foreground">
+                  {"図面がない部品、メーカーが製造中止にした部品、破損した設備部品も、現物からデータ化して1個から復元・試作できるか確認します。"}
+                </p>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild size="lg">
                     <Link href="/contact">{"お問い合わせ"}</Link>
@@ -235,12 +259,39 @@ export default function PrintPage() {
         </div>
       </section>
 
+      {/* Restoration support */}
+      <section className="border-t border-border bg-secondary py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading sub="設備部品・治具・旧型パーツなど、入手できない部品の相談入口です。">
+              {"部品復元・1個からの小ロット相談"}
+            </SectionHeading>
+          </Reveal>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {restorationPoints.map((item) => (
+              <Reveal key={item.title}>
+                <Card className="h-full border-border">
+                  <CardContent className="flex h-full flex-col gap-3 p-6">
+                    <h3 className="font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Capabilities */}
       <section className="border-t border-border py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading sub="3Dプリントで対応できる基本的な内容です。">
-              {"できること"}
+            <SectionHeading sub="用途・条件を確認したうえで、対応可否を判断する内容です。">
+              {"相談できること"}
             </SectionHeading>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -318,8 +369,8 @@ export default function PrintPage() {
       <section className="border-t border-border py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading sub="3Dプリントで対応できる材質の一覧です。">
-              {"対応可能な材質"}
+            <SectionHeading sub="用途・荷重・使用環境を確認したうえで、適した素材を検討します。">
+              {"相談可能な材質"}
             </SectionHeading>
           </Reveal>
           <dl className="mt-8 grid gap-4 border-y border-border py-6 sm:grid-cols-2">
@@ -525,8 +576,8 @@ export default function PrintPage() {
 
       {/* CTA */}
       <CTASection
-        heading="3Dプリントについてのご相談"
-        description="試作・造形の検討段階でもお気軽にご相談ください。目的に合わせた方法をご提案します。"
+        heading="部品復元・試作の相談"
+        description="壊れた部品や製造中止部品も、まずは相談だけで大丈夫です。用途を伺い、対応できるかどうかから確認します。"
         eventLabel="print_page_cta"
       />
     </main>

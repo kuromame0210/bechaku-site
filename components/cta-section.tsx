@@ -12,8 +12,8 @@ interface CTASectionProps {
 }
 
 export function CTASection({
-  heading = "お問い合わせ",
-  description = "技術的な可否判断を含めたご相談を承ります。まずはお気軽にご連絡ください。",
+  heading = "まずは相談してみる",
+  description = "写真だけ・現物だけの段階でも大丈夫です。対応できるかどうかの確認からご相談ください。",
   eventLabel = "bottom_cta",
 }: CTASectionProps) {
   return (
@@ -27,10 +27,10 @@ export function CTASection({
             {description}
           </p>
           <Button asChild size="lg">
-            <Link href="/contact" onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: eventLabel, page_path: typeof window !== "undefined" ? window.location.pathname : "" })}>{"お問い合わせはこちら"}</Link>
+            <Link href="/contact" onClick={() => gtag.event("cta_click", { event_category: "engagement", event_label: eventLabel, page_path: typeof window !== "undefined" ? window.location.pathname : "" })}>{"まず相談する"}</Link>
           </Button>
           <p className="text-sm text-muted-foreground">
-            {"※注意事項をご確認の上、フォームへお進みください。"}
+            {"内容が固まっていなくても、分かる範囲でご相談ください。"}
           </p>
         </Reveal>
       </div>

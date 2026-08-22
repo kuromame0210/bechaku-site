@@ -9,6 +9,7 @@ const navItems = [
   { label: "トップ", href: "/" },
   { label: "3Dスキャン", href: "/scan" },
   { label: "3Dプリント", href: "/print" },
+  { label: "コラム", href: "/blog" },
   { label: "会社案内", href: "/company" },
 ]
 

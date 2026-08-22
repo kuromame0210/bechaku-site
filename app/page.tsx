@@ -12,9 +12,9 @@ import { CTALink } from "@/components/cta-link"
 import { SITE_URL } from "@/lib/site"
 
 export const metadata: Metadata = {
-  title: "リバースエンジニアリング｜図面なしでも部品復元・試作対応｜別役ロボット工業",
+  title: "リバースエンジニアリング｜図面なし部品の復元・試作相談｜別役ロボット工業",
   description:
-    "図面がなくても現物から対応。3Dスキャンで実物をデータ化し、3Dプリントで復元・試作まで。製造中止部品の復元、旧パーツの再現など、現物があればまずご相談ください。",
+    "図面がない部品も、現物から3Dスキャンでデータ化できるか確認。3Dプリントでの復元・試作、製造中止部品や旧パーツの再現可否など、まずご相談ください。",
   alternates: {
     canonical: "/",
   },
@@ -25,7 +25,7 @@ const capabilities = [
     image: "/images/3d-scanner-vl-700.webp",
     title: "実物 → 3Dデータ化",
     description:
-      "現物をスキャンし、形状・構造を3Dデータとして取得します。図面がない状態からの検討が可能です。",
+      "現物をスキャンし、形状・構造を3Dデータとして取得できるか確認します。図面がない状態からの検討が可能です。",
     href: "/scan",
     linkLabel: "3Dスキャン詳細",
   },
@@ -33,7 +33,7 @@ const capabilities = [
     image: "/images/3d-printer-aglista.webp",
     title: "3Dデータ → 造形",
     description:
-      "3Dデータをもとに試作品を造形。組付けや干渉確認、形状検討に活用できます。",
+      "3Dデータをもとに試作品の造形を検討。組付けや干渉確認、形状検討に活用できる場合があります。",
     href: "/print",
     linkLabel: "3Dプリント詳細",
   },
@@ -41,7 +41,7 @@ const capabilities = [
     image: "/images/icon-restore.webp",
     title: "旧パーツ・部品の復元",
     description:
-      "生産中止部品や入手困難なパーツを、スキャン・データ化を経て復元します。",
+      "生産中止部品や入手困難なパーツを、スキャン・データ化を経て復元できるか確認します。",
     href: "/faq",
     linkLabel: "FAQを見る",
   },
@@ -49,7 +49,7 @@ const capabilities = [
     image: "/images/icon-prototype.webp",
     title: "試作・量産（カスタム）",
     description:
-      "試作から小ロット量産、カスタム対応まで。目的に応じた造形方法をご提案します。",
+      "試作から小ロット量産、カスタム対応まで。目的に応じた造形方法を検討します。",
     href: "/faq",
     linkLabel: "FAQを見る",
   },
@@ -65,22 +65,22 @@ const outputs = [
   {
     image: "/images/output-data.webp",
     title: "3Dデータ",
-    description: "形状・寸法の整理、検討用のデータ化まで対応します。",
+    description: "形状・寸法の整理、検討用のデータ化をご相談いただけます。",
   },
   {
     image: "/images/output-prototype.webp",
     title: "試作モデル",
-    description: "形状確認・組付け確認など、評価用の造形を行います。",
+    description: "形状確認・組付け確認など、評価用の造形を検討します。",
   },
   {
     image: "/images/output-restoration.webp",
     title: "復元パーツ",
-    description: "生産終了品の再調達や復元検討に活用できます。",
+    description: "生産終了品の再調達や復元検討に活用できる場合があります。",
   },
   {
     image: "/images/output-jig.webp",
     title: "治具・補助具",
-    description: "現場導入に向けた治具や補助具の内製化に対応します。",
+    description: "現場導入に向けた治具や補助具の内製化を検討できます。",
   },
 ]
 
@@ -97,28 +97,49 @@ const worries = [
     category: "試作",
     headline: "期間短縮",
     before: "外注試作に時間がかかり、検証のタイミングが遅れて困る。",
-    after: "社内で機能検証まで対応できるので、検証のタイミングを前倒しできます。",
+    after: "社内で機能検証まで進められる場合があり、検証のタイミングを前倒ししやすくなります。",
   },
   {
     image: "/images/worries-design-process.webp",
     category: "デザイン",
     headline: "意思決定をスムーズに",
     before: "アイデアが伝わりにくく、判断が先延ばしになって困る。",
-    after: "アイデアをすぐ形にできるので、その場で判断・意思決定が進みます。",
+    after: "アイデアを早い段階で形にすることで、判断・意思決定を進めやすくなります。",
   },
   {
     image: "/images/worries-sales.webp",
     category: "営業",
     headline: "提案力UP",
     before: "提案時の説得材料が弱く、相手の反応が薄くて困る。",
-    after: "実物に近いモックアップで提案できるので、商談での説得力が高まります。",
+    after: "実物に近いモックアップを用意できる場合、商談時の説明材料になります。",
   },
   {
     image: "/images/worries-manufacturing.webp",
     category: "製造",
     headline: "コスト削減",
     before: "治具を外注しており、コストと納期がネックで困る。",
-    after: "治具を内製化できるので、コストも納期も自社でコントロールできます。",
+    after: "治具を内製化できる場合、コストや納期を調整しやすくなります。",
+  },
+]
+
+const seoArticles = [
+  {
+    title: "図面がない部品は作れる？",
+    description:
+      "現物から3Dスキャンでデータ化し、部品を復元・製作できるか確認する流れを解説します。",
+    href: "/blog/no-drawing-parts-manufacturing",
+  },
+  {
+    title: "製造中止部品を復元する方法",
+    description:
+      "代替品探し・中古品・リバースエンジニアリング・設計変更を比較します。",
+    href: "/blog/manufacturing-discontinued-parts",
+  },
+  {
+    title: "壊れた部品を3Dプリントで復元できるか",
+    description:
+      "設備部品の復元で使える素材、精度、相談前の確認点を整理します。",
+    href: "/blog/broken-parts-3d-print-restoration",
   },
 ]
 export default function HomePage() {
@@ -138,7 +159,7 @@ export default function HomePage() {
       addressCountry: "JP",
     },
     description:
-      "3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がない部品の復元・試作に対応。",
+      "3Dスキャン・3Dプリントによるリバースエンジニアリング。図面がない部品の復元・試作相談に対応。",
     areaServed: "JP",
     knowsLanguage: "ja",
   }
@@ -163,7 +184,7 @@ export default function HomePage() {
             {"3Dスキャン・3Dプリントによるリバースエンジニアリング"}
           </h1>
           <p className="mt-4 leading-relaxed text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
-            {"図面がなくても、現物があれば技術的に成立するかを判断し、形にします。"}
+            {"図面がない部品でも、現物を確認したうえで技術的に成立するか判断します。"}
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button
@@ -182,9 +203,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="reveal--scroll">
             <p className="leading-loose text-muted-foreground">
-              {"図面がない部品の復元、現物からの3Dデータ化、試作や形状確認のご相談に対応しています。"}
+              {"図面がない部品の復元、現物からの3Dデータ化、試作や形状確認をご相談いただけます。"}
               <br />
-              {"3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、内容に応じて一貫して対応可能です。"}
+              {"3Dスキャンによるデータ化から3Dプリントによる試作・復元まで、内容に応じて対応可否を確認します。"}
               </p>
           </Reveal>
         </div>
@@ -281,6 +302,38 @@ export default function HomePage() {
                   </p>
                 </CardContent>
               </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEO articles */}
+      <section className="border-t border-border py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="reveal--scroll">
+            <SectionHeading sub="図面なし・製造中止・壊れた部品で困っている方向けの解説です。">
+              {"部品復元の相談前に読む記事"}
+            </SectionHeading>
+          </Reveal>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {seoArticles.map((article) => (
+              <Reveal key={article.href} className="reveal--scroll">
+                <Link href={article.href} className="group block h-full">
+                  <Card className="h-full border-border transition-shadow group-hover:shadow-lg">
+                    <CardContent className="flex h-full flex-col gap-3 p-6">
+                      <h3 className="font-semibold leading-relaxed text-foreground group-hover:underline">
+                        {article.title}
+                      </h3>
+                      <p className="leading-relaxed text-muted-foreground">
+                        {article.description}
+                      </p>
+                      <span className="mt-auto pt-2 text-sm font-medium text-primary">
+                        {"記事を読む →"}
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </div>

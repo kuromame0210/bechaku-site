@@ -58,6 +58,12 @@ export function Footer() {
               {"会社案内"}
             </Link>
             <Link
+              href="/blog"
+              className="text-sm text-primary-foreground transition-colors hover:text-primary-foreground/80 hover:underline"
+            >
+              {"コラム"}
+            </Link>
+            <Link
               href="/contact"
               className="text-sm text-primary-foreground transition-colors hover:text-primary-foreground/80 hover:underline"
             >

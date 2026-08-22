@@ -16,9 +16,9 @@ import {
 } from "@/components/ui/accordion"
 
 export const metadata: Metadata = {
-  title: "3Dスキャンで図面なし部品をデータ化｜リバースエンジニアリング｜別役ロボット工業",
+  title: "図面なし部品を現物から3Dデータ化｜3Dスキャン・図面化｜別役ロボット工業",
   description:
-    "図面がない部品も現物から3Dデータ化。製造中止品や旧型パーツの形状を精密に計測し、STL・STEP等のCADデータを作成。復元・試作・干渉確認に対応。",
+    "図面なし・CADデータなしの部品も、現物から3Dスキャンでデータ化できるか確認。製造中止部品や古い設備部品の形状把握、図面化、復元・試作前の可否判断をご相談いただけます。",
   alternates: {
     canonical: "/scan",
   },
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 const capabilities = [
   {
     image: "/images/scan-capability-precision.webp",
-    text: "実物を精密にスキャン",
+    text: "実物を3Dスキャンで確認",
   },
   {
     image: "/images/icon-3d-data.webp",
@@ -40,27 +40,48 @@ const capabilities = [
 ]
 
 const useCases = [
+  "図面なしの部品を作ってくれる業者を探している",
   "図面が残っていない部品を再現したい",
+  "現物から図面化・CADデータ化を依頼したい",
   "古い設備で仕様や寸法が分からない",
-  "海外製・他社製部品の形状を正確に把握したい",
+  "製造中止部品や廃番部品の復元を検討したい",
+  "海外製・他社製部品の形状を把握したい",
   "まず技術的に可能か判断したい",
 ]
 
+const noDrawingPoints = [
+  {
+    title: "現物から形状を取得",
+    description:
+      "図面が残っていない部品でも、現物を3Dスキャンして形状・寸法をデータ化できるか確認します。",
+  },
+  {
+    title: "復元・製作前の可否判断",
+    description:
+      "製造中止品や壊れた部品について、スキャン後に復元・試作へ進められるか確認します。",
+  },
+  {
+    title: "写真段階の相談も可能",
+    description:
+      "まずは対象部品の写真・サイズ・用途を共有いただければ、相談の進め方をご案内します。",
+  },
+]
+
 const scanSpecs = [
-  "部品を360度精密スキャン（裏側も3D計測）",
-  "対応サイズ: 40-580mm",
+  "部品の3Dスキャン（裏側を含めた計測も個別に確認）",
+  "対応サイズの目安: 40-580mm",
   "自動ノイズ処理",
   "フルカラー出力",
-  "AIによる自動計測、測定結果を自社フォーマットでエクスポート",
+  "AIによる自動計測、測定結果のエクスポートに対応",
   "出力形式: DXF / STL / OBJ / STEP / 3MF",
 ]
 
 const scanApplications = [
-  "丸ごとスキャンしたデータをカラー出力し、メタバース空間で活用",
-  "スペアパーツの作成",
+  "丸ごとスキャンしたデータをカラー出力し、活用方法を検討",
+  "スペアパーツ作成の検討",
   "図面なし部品 / CADデータなし部品のCAD化",
   "デジタルアーカイブ（文化財などの現物を3Dデータとして保存）",
-  "リバースエンジニアリング（解析・3Dプリンタ連携で復元・量産）",
+  "リバースエンジニアリング（解析・3Dプリンタ連携で復元・量産を検討）",
 ]
 
 const cautions = [
@@ -116,19 +137,19 @@ const scanFaqItems = [
     id: "scan-faq-1",
     question: "図面やCADデータがなくても相談できますか？",
     answer:
-      "はい、可能です。\n現物を3Dスキャンし、形状・寸法を取得することで、\n設計や検討に使用できる3Dデータを作成します。\n図面がない、または古くて信用できない場合でも対応しています。",
+      "現物の状態や用途を確認したうえで判断します。\n3Dスキャンで形状・寸法を取得し、\n設計や検討に使用できる3Dデータを作成できる場合があります。",
   },
   {
     id: "scan-faq-2",
     question: "古くて破損している部品でも復元できますか？",
     answer:
-      "元の形状が残っていれば大丈夫です。\n欠けや摩耗がある場合でも、用途を伺った上で再設計・補正を行います。",
+      "元の形状がどの程度残っているかを確認したうえで判断します。\n欠けや摩耗がある場合は、用途を伺ったうえで再設計・補正を検討します。",
   },
   {
     id: "scan-faq-3",
     question: "どのくらいの大きさまで対応できますか？",
     answer:
-      "おおよそ1000mm程度まで対応可能です。\nそれ以上のサイズについては、分割対応などを含めて個別にご相談ください。",
+      "おおよそ1000mm程度までが目安です。\nただし、形状・重量・材質・必要精度によって異なるため、個別に確認します。",
   },
   {
     id: "scan-faq-4",
@@ -155,7 +176,7 @@ export default function ScanPage() {
     "@type": "Service",
     name: "3Dスキャン（リバースエンジニアリング）",
     description:
-      "図面がない部品も現物から3Dデータ化。製造中止品や旧型パーツの形状を精密に計測し、CADデータを作成。",
+      "図面なし・CADデータなしの部品も、現物から3Dデータ化できるか確認。製造中止品や旧型パーツの形状把握、CADデータ作成を検討。",
     provider: {
       "@type": "Organization",
       name: "別役ロボット工業株式会社",
@@ -200,10 +221,10 @@ export default function ScanPage() {
             <div className="grid items-center gap-8 md:grid-cols-[1.1fr_0.9fr]">
               <div className="flex flex-col gap-6">
                 <SectionHeading tag="h1">
-                  {"実物から3Dデータ化 "}
+                  {"図面なし部品を現物から3Dデータ化できるか確認"}
                 </SectionHeading>
                 <p className="max-w-2xl leading-relaxed text-foreground">
-                  {"現物があれば、図面がなくても3Dデータ化が可能です。"}
+                  {"図面がない、CADデータがない、製造中止で入手できない。そうした部品でも、現物を確認したうえで3Dスキャンによる形状取得や復元・製作の検討につなげられるか判断します。"}
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Button asChild size="lg">
@@ -228,12 +249,39 @@ export default function ScanPage() {
         </div>
       </section>
 
+      {/* No drawing support */}
+      <section className="border-t border-border bg-secondary py-14 md:py-18">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal>
+            <SectionHeading sub="図面なし・現物のみの部品相談で、最初に確認するポイントです。">
+              {"図面なし・現物からの部品製作相談"}
+            </SectionHeading>
+          </Reveal>
+          <div className="mt-8 grid gap-4 md:grid-cols-3">
+            {noDrawingPoints.map((item) => (
+              <Reveal key={item.title}>
+                <Card className="h-full border-border">
+                  <CardContent className="flex h-full flex-col gap-3 p-6">
+                    <h3 className="font-semibold text-foreground">
+                      {item.title}
+                    </h3>
+                    <p className="leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Capabilities */}
       <section className="border-t border-border py-14 md:py-18">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal>
-            <SectionHeading sub="3Dスキャンで対応できる基本的な内容です。">
-              {"できること"}
+            <SectionHeading sub="対象物の状態を確認したうえで、対応可否を判断する内容です。">
+              {"相談できること"}
             </SectionHeading>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -528,8 +576,8 @@ export default function ScanPage() {
 
       {/* CTA */}
       <CTASection
-        heading="3Dスキャンについてのご相談"
-        description="図面がない部品や形状把握が必要な場合、まずはお気軽にご相談ください。"
+        heading="図面なし・現物からの相談"
+        description="写真だけ・現物だけの段階でも大丈夫です。まずは対応できるかどうかの確認からご相談ください。"
         eventLabel="scan_page_cta"
       />
     </main>
