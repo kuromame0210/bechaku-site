@@ -7,7 +7,7 @@
 export const metadata: Metadata = {
   title: "お問い合わせ | 別役ロボット工業株式会社",
   description:
-    "リバースエンジニアリング・3Dスキャン・3Dプリントのご相談はこちら。図面がない部品の復元・試作など、技術的な可否判断からお気軽にどうぞ。",
+    "リバースエンジニアリング・3Dスキャン・3Dプリントのご相談はこちら。図面がない部品や製造中止部品も、写真だけの段階から対応可否を確認できます。",
   alternates: {
     canonical: "/contact",
   },
@@ -25,12 +25,12 @@ export default function ContactPage() {
             </SectionHeading>
             <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
               {
-                "ご相談内容を確認のうえ、担当者よりご連絡いたします。内容をご入力ください。"
+                "図面がない部品や製造中止部品も、写真だけの段階から対応可否を確認できます。部品名や材質が分からない場合も、分かる範囲でご相談ください。"
               }
             </p>
             <div className="mt-6 flex flex-col gap-1 text-sm text-muted-foreground">
               <p className="font-semibold text-foreground">
-                {"お問い合せはこちらから"}
+                {"お問い合わせはこちらから"}
               </p>
               <p>{"e-mail: h-betchaku@brinet.co.jp"}</p>
               <p>{"TEL: 0495-71-6824"}</p>
