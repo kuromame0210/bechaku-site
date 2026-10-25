@@ -304,7 +304,7 @@ export default function CompanyPage() {
             </div>
             <Button asChild className="mt-6" size="lg">
               <Link
-                href="/pdfs/会社案内.pdf"
+                href="/pdfs/company-guide.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >

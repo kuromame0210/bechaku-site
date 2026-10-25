@@ -97,15 +97,15 @@ const materialLineup = [
 const materialPdfs = [
   {
     title: "低硬度シリコーンゴム素材のご案内PDF",
-    href: "/pdfs/シリコーンゴム登場.pdf",
+    href: "/pdfs/silicone-rubber.pdf",
   },
   {
     title: "高硬度シリコーンゴム素材のご案内PDF",
-    href: "/pdfs/高硬度シリコーンゴム登場.pdf",
+    href: "/pdfs/high-hardness-silicone-rubber.pdf",
   },
   {
     title: "耐熱アクリル樹脂素材のご案内PDF",
-    href: "/pdfs/耐熱チラシ small.pdf",
+    href: "/pdfs/heat-resistant-flyer.pdf",
   },
 ]
 
