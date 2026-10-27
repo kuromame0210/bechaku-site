@@ -6,6 +6,8 @@ import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { getAllSlugs, getPost } from "@/lib/blog"
 import { CTASection } from "@/components/cta-section"
+import { CTALink } from "@/components/cta-link"
+import { ArticleScrollTracker } from "@/components/article-scroll-tracker"
 import { SITE_URL } from "@/lib/site"
 
 export function generateStaticParams() {
@@ -66,6 +68,7 @@ export default async function BlogPostPage({
 
   return (
     <main>
+      <ArticleScrollTracker path={`/blog/${slug}`} />
       <Script
         id="article-schema"
         type="application/ld+json"
@@ -83,7 +86,7 @@ export default async function BlogPostPage({
         </Script>
       )}
 
-      <article className="mx-auto max-w-3xl px-6 py-14 md:py-20">
+      <article data-scroll-article className="mx-auto max-w-3xl px-6 py-14 md:py-20">
         <header className="mb-10">
           <p className="text-sm text-muted-foreground">{frontmatter.date}</p>
           <h1 className="mt-2 text-2xl font-bold leading-relaxed text-foreground md:text-3xl">
@@ -107,6 +110,11 @@ export default async function BlogPostPage({
           <Markdown
             remarkPlugins={[remarkGfm]}
             components={{
+              a: ({ href, children }) => href === "/contact" ? (
+                <CTALink href={href} eventLabel="blog_inline_cta" className="font-semibold text-primary underline underline-offset-4">
+                  {children}
+                </CTALink>
+              ) : <a href={href}>{children}</a>,
               h2: ({ children }) => (
                 <h2 className="mb-4 mt-10 border-b border-border pb-3 text-xl font-bold text-foreground">
                   {children}

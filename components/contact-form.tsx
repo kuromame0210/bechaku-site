@@ -2,7 +2,7 @@
 
 import type { ChangeEvent, FormEvent } from "react"
 import Link from "next/link"
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
@@ -59,6 +59,23 @@ declare global {
  ]
  
 export function ContactForm() {
+  const hasStarted = useRef(false)
+  const isReportingInvalid = useRef(false)
+  const trackForm = (action: string, params: Record<string, string | number | boolean> = {}) => {
+    gtag.event(action, { page_path: "/contact", form_id: "contact", ...params })
+  }
+  const trackStart = () => {
+    if (hasStarted.current) return
+    hasStarted.current = true
+    trackForm("contact_form_start")
+  }
+  const trackInvalid = () => {
+    // Native validation emits one invalid event per field in the same attempt.
+    if (isReportingInvalid.current) return
+    isReportingInvalid.current = true
+    trackForm("contact_form_error", { stage: "input", error_type: "browser_validation" })
+    setTimeout(() => { isReportingInvalid.current = false }, 0)
+  }
   const [step, setStep] = useState<Step>("input")
   const [formError, setFormError] = useState("")
   const [submitError, setSubmitError] = useState("")
@@ -123,6 +140,7 @@ export function ContactForm() {
   const updateField =
     (field: keyof FormData) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      trackStart()
       const nextValue = event.target.value
       setFormData((prev) => ({ ...prev, [field]: nextValue }))
       if (field === "postalCode") {
@@ -138,6 +156,7 @@ export function ContactForm() {
   const handleFileChange =
     (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
       const nextFile = event.target.files?.[0] ?? null
+      if (nextFile) trackStart()
       const next = [...files]
       next[index] = nextFile
       const totalBytes = next.reduce(
@@ -145,6 +164,7 @@ export function ContactForm() {
         0,
       )
       if (totalBytes > MAX_TOTAL_BYTES) {
+        trackForm("contact_form_error", { stage: "input", error_type: "file_size" })
         setFileError("添付ファイルの合計容量は10MB以内にしてください。")
         return
       }
@@ -158,14 +178,17 @@ export function ContactForm() {
        ({ key }) => !formData[key].trim(),
      )
      if (missing.length || !consent) {
+       trackForm("contact_form_error", { stage: "input", error_type: "required", missing_count: missing.length, consent_missing: !consent })
        setFormError("必須項目が未入力です。入力内容をご確認ください。")
        return
      }
      if (fileError) {
+       trackForm("contact_form_error", { stage: "input", error_type: "file_size" })
        setFormError(fileError)
        return
      }
      setFormError("")
+     trackForm("contact_form_confirm", { attachment_count: files.filter(Boolean).length })
      setStep("confirm")
    }
 
@@ -188,6 +211,8 @@ export function ContactForm() {
   }
 
   const handleSubmit = async () => {
+    if (isSubmitting) return
+    trackForm("contact_form_submit_attempt")
     setIsSubmitting(true)
     setSubmitError("")
     try {
@@ -221,6 +246,10 @@ export function ContactForm() {
       })
       setStep("complete")
     } catch (error) {
+      const errorType = error instanceof Error && ["recaptcha_missing_site_key", "recaptcha_not_loaded", "send_failed"].includes(error.message)
+        ? error.message
+        : "unknown"
+      trackForm("contact_form_error", { stage: "submit", error_type: errorType })
       if (error instanceof Error) {
         if (error.message === "recaptcha_missing_site_key") {
           setSubmitError("reCAPTCHAの設定が未完了です。")
@@ -274,7 +303,11 @@ export function ContactForm() {
        </div>
  
        {step === "input" ? (
-        <form onSubmit={handleConfirm} className="space-y-6">
+        <form
+          onSubmit={handleConfirm}
+          onInvalidCapture={trackInvalid}
+          className="space-y-6"
+        >
           {formError && (
             <div className="rounded-md border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive">
               {formError}
@@ -408,9 +441,10 @@ export function ContactForm() {
              </Label>
              <RadioGroup
                value={formData.inquiryType}
-               onValueChange={(value) =>
+               onValueChange={(value) => {
+                 trackStart()
                  setFormData((prev) => ({ ...prev, inquiryType: value }))
-               }
+               }}
                className="gap-3"
              >
                {inquiryOptions.map((option) => {
@@ -448,9 +482,10 @@ export function ContactForm() {
                  id="consent"
                  checked={consent}
                  className="mt-1"
-                 onCheckedChange={(checked) =>
+                 onCheckedChange={(checked) => {
+                   trackStart()
                    setConsent(checked === true)
-                 }
+                 }}
                />
                <Label
                  htmlFor="consent"
@@ -521,7 +556,10 @@ export function ContactForm() {
              <Button
                type="button"
                variant="outline"
-               onClick={() => setStep("input")}
+               onClick={() => {
+                 trackForm("contact_form_back")
+                 setStep("input")
+               }}
              >
                {"戻る"}
              </Button>
